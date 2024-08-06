@@ -1,0 +1,5 @@
+*.ipynb !text !filter !merge !diff
+*.html !text !filter !merge !diff
+*.h5 !text !filter !merge !diff
+*.fits !text !filter !merge !diff
+* !text !filter !merge !diff
