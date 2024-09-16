@@ -6,7 +6,12 @@ from antenna import generate_antennas, read_antenna_positions
 from baseline import generate_baselines
 from source import get_sources
 from observation import get_location_and_time
-from visibility import calculate_visibility_original, calculate_visibility_optimized, calculate_modulus_phase
+from visibility import (
+    calculate_visibility_original,
+    calculate_visibility_optimized,
+    calculate_polarized_visibility,
+    calculate_modulus_phase
+)
 from plot import plot_visibility, plot_heatmaps, plot_modulus_vs_frequency
 from astropy.time import TimeDelta
 import argparse
@@ -31,6 +36,8 @@ def main():
     parser.add_argument('--use_gleam', action='store_true', help='Use the GLEAM catalog as the source model.')
     parser.add_argument('--flux_limit', type=float, default=1.0, help='Flux limit for the GLEAM sources (Jy).')
     parser.add_argument('--plotting', type=str, choices=['matplotlib', 'bokeh'], default='matplotlib', help='Choose the plotting library: "matplotlib" or "bokeh".')
+    parser.add_argument('--use_polarization', action='store_true', help='Include polarization in the visibility calculation.')
+
 
     args = parser.parse_args()
 
@@ -83,12 +90,16 @@ def main():
         f.write("")  # Empty the file
 
     # Choose the visibility calculation method
-    if args.use_optimized:
-        print("Using optimized visibility calculation.")
-        calculate_visibility = calculate_visibility_optimized
+    if args.use_polarization:
+        print("Using polarized visibility calculation.")
+        calculate_visibility = calculate_polarized_visibility
     else:
-        print("Using original visibility calculation.")
-        calculate_visibility = calculate_visibility_original
+        if args.use_optimized:
+            print("Using optimized non-polarized visibility calculation.")
+            calculate_visibility = calculate_visibility_optimized
+        else:
+            print("Using original non-polarized visibility calculation.")
+            calculate_visibility = calculate_visibility_original
 
 
 
