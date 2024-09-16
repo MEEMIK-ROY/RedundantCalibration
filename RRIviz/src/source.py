@@ -7,9 +7,9 @@ from pympler import asizeof
 
 # Test sources (used when not loading GLEAM catalog)
 test_sources = [
-    {'coords': SkyCoord(ra=0*u.deg, dec=-30.72152777777791*u.deg), 'flux': 2},
-    {'coords': SkyCoord(ra=120*u.deg, dec=-30.72152777777791*u.deg), 'flux': 4},
-    {'coords': SkyCoord(ra=240*u.deg, dec=-30.72152777777791*u.deg), 'flux': 6}
+    {'coords': SkyCoord(ra=0*u.deg, dec=-30.72152777777791*u.deg), 'flux': 2, 'polarization': (1.0, 0.5)},
+    {'coords': SkyCoord(ra=120*u.deg, dec=-30.72152777777791*u.deg), 'flux': 4, 'polarization': (0.9, 0.3)},
+    {'coords': SkyCoord(ra=240*u.deg, dec=-30.72152777777791*u.deg), 'flux': 6, 'polarization': (0.2, 0.7)}
 ]
 
 sp_index = 0  # Spectral index for both models
