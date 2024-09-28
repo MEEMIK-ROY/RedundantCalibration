@@ -43,8 +43,8 @@ def calculate_visibility_optimized(antennas, baselines, sources, location, obsti
     source_fluxes = source_fluxes[above_horizon]
 
     theta = np.pi / 2 - alt
-    l = np.cos(alt) * np.cos(az)
-    m = np.cos(alt) * np.sin(az)
+    l = np.cos(alt) * np.sin(az)
+    m = np.cos(alt) * np.cos(az)
     n = np.sin(alt)
 
     # Gaussian primary beam pattern
@@ -101,8 +101,8 @@ def calculate_visibility_original(antennas, baselines, sources, location, obstim
                 az, alt = altaz.az.rad, altaz.alt.rad
                 
                 theta = np.deg2rad(90 - altaz.alt.deg)
-                l = np.cos(alt) * np.cos(az)
-                m = np.cos(alt) * np.sin(az)
+                l = np.cos(alt) * np.sin(az)
+                m = np.cos(alt) * np.cos(az)
                 n = np.sin(alt)
                 
                 # Projected baseline component in the direction of the source
