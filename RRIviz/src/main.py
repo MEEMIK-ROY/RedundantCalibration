@@ -12,6 +12,8 @@ from visibility import (
     calculate_polarized_visibility,
     calculate_modulus_phase
 )
+from skymodel import collect_sky_model_for_time
+import os 
 from plot import plot_visibility, plot_heatmaps, plot_modulus_vs_frequency
 from astropy.time import TimeDelta
 import argparse
@@ -32,11 +34,20 @@ def main():
     parser.add_argument('--height', type=float, help='Height of the observation location in meters')
     parser.add_argument('--sp_index', type=float, default=0.0, help='Spectral index for source flux adjustment.')
     parser.add_argument('--antenna_positions_file', type=str, help='File containing antenna positions. Each line should contain x y z coordinates of an antenna, separated by spaces.')
-    parser.add_argument('--use_optimized', action='store_true', help='Use the optimized visibility calculation.')
+    parser.add_argument('--use_non_optimized', action='store_true', help='Use the original non-optimized visibility calculation.')
     parser.add_argument('--use_gleam', action='store_true', help='Use the GLEAM catalog as the source model.')
     parser.add_argument('--flux_limit', type=float, default=1.0, help='Flux limit for the GLEAM sources (Jy).')
+    parser.add_argument('--gleam_flux_limit', type=float, default=1.0, help='Flux limit for GLEAM sources.')
+
     parser.add_argument('--plotting', type=str, choices=['matplotlib', 'bokeh'], default='matplotlib', help='Choose the plotting library: "matplotlib" or "bokeh".')
     parser.add_argument('--use_polarization', action='store_true', help='Include polarization in the visibility calculation.')
+
+    parser.add_argument('--plot_skymodel_every_hour', action='store_true', help='Plot the sky model at each hour during the simulation.')
+    parser.add_argument('--skymodel_frequency', type=float, default=150.0, help='Frequency in MHz for the sky model.')
+    parser.add_argument('--save_skymodel_plots', action='store_true', help='Save the sky model plots to files.')
+    parser.add_argument('--skymodel_plot_dir', type=str, default='skymodel_plots', help='Directory to save sky model plots.')
+    parser.add_argument('--fov_radius_deg', type=float, default=5.0, help='Field of view radius in degrees.')
+
 
 
     args = parser.parse_args()
@@ -64,8 +75,16 @@ def main():
     # Get location and observation time
     location, obstime_start = get_location_and_time(args.lat, args.lon, args.height)
 
+    # List to store sky model plotting functions
+    sky_model_plots = []
+    sky_model_figures = []  # Initialize the list to store sky model figures
+
+    # Create directory for saving sky model plots if needed
+    if args.save_skymodel_plots:
+        os.makedirs(args.skymodel_plot_dir, exist_ok=True)
+
     # Load sources (either test or GLEAM catalog)
-    sources = get_sources(use_gleam=args.use_gleam, flux_limit=args.flux_limit)
+    sources = get_sources(use_gleam=args.use_gleam, flux_limit=args.gleam_flux_limit)
 
 
     # Frequency and wavelength setup
@@ -76,6 +95,7 @@ def main():
     hours_per_day = 24
     time_interval = 1  # Run every hour
     total_hours = hours_per_day * time_interval
+
 
     moduli_over_time = {key: [] for key in baselines.keys()}
     phases_over_time = {key: [] for key in baselines.keys()}
@@ -94,12 +114,12 @@ def main():
         print("Using polarized visibility calculation.")
         calculate_visibility = calculate_polarized_visibility
     else:
-        if args.use_optimized:
+        if args.use_non_optimized:
+            print("Using original non-optimized visibility calculation.")
+            calculate_visibility = calculate_visibility_original
+        else:
             print("Using optimized non-polarized visibility calculation.")
             calculate_visibility = calculate_visibility_optimized
-        else:
-            print("Using original non-polarized visibility calculation.")
-            calculate_visibility = calculate_visibility_original
 
 
 
@@ -109,6 +129,19 @@ def main():
         visibility_dict = calculate_visibility(
             antennas, baselines, sources, location, obstime, wavelengths, freqs, args.sp_index
         )
+
+        # Collect sky model plot function
+        if args.plot_skymodel_every_hour:
+            plot_function = collect_sky_model_for_time(
+                location=location,
+                obstime=obstime,
+                frequency=args.skymodel_frequency,
+                fov_radius_deg=args.fov_radius_deg,
+                gleam_sources=sources if args.use_gleam else None
+            )
+            fig = plot_function()
+            sky_model_figures.append(fig)
+
 
         # # Calculate and log the elapsed time
         # elapsed_time = time.time() - start_time
@@ -146,6 +179,16 @@ def main():
             print(f"Hour {hour+1}/{total_hours}: Estimated remaining time: {estimated_remaining_time:.2f} seconds")
         else:
             print(f"Hour {hour+1}/{total_hours}: Time elapsed: {elapsed_time:.2f} seconds")
+
+
+    # After the loop, execute all the sky model plot functions in different figures
+    if args.plot_skymodel_every_hour:
+        # plt.figure(figsize=(14, 7))
+        for i, plot_func in enumerate(sky_model_plots):
+            plt.figure()  # Create a new figure for each plot
+            plot_func()   # Call the plot function to generate each sky model plot
+
+
 
     # Convert lists to numpy arrays
     for key in baselines.keys():
