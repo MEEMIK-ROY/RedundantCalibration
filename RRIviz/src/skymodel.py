@@ -9,7 +9,7 @@ from astropy.time import Time
 import astropy.units as u
 
 
-def collect_sky_model_for_time(location, obstime, frequency=150, fov_radius_deg=5, gleam_sources=None):
+def collect_sky_model_for_time(location, obstime, frequency=76, fov_radius_deg=5, gleam_sources=None):
     """
     Generates the Global Sky Model data at a given frequency and time,
     and returns a function to execute the plot later.
@@ -129,7 +129,7 @@ def collect_sky_model_for_time(location, obstime, frequency=150, fov_radius_deg=
 
             # Label the GLEAM sources with flux
             for ra, dec, flux in zip(ra_gleam, dec_gleam, flux_gleam):
-                plt.annotate(
+                plt.annotate( 
                     f"{flux:.1f} Jy",  # Label with flux
                     xy=(ra, dec),
                     xycoords='data',

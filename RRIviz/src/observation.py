@@ -26,6 +26,6 @@ def get_location_and_time(lat=None, lon=None, height=None):
     height = height if height is not None else default_height
 
     location = EarthLocation(lat=lat * u.deg, lon=lon * u.deg, height=height * u.m)
-    obstime_start = Time("2024-06-05T00:00:00", format="isot", scale="utc")
+    obstime_start = Time("2024-12-20T00:00:00", format="isot", scale="utc")
 
     return location, obstime_start

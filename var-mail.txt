@@ -1,0 +1,960 @@
+385047
+
+
+From slurm@nrao.edu  Fri Jul 19 03:32:54 2024
+Return-Path: <slurm@nrao.edu>
+Received: from revere-vml.aoc.nrao.edu (revere-vml.aoc.nrao.edu [146.88.10.15])
+	by dropbox.aoc.nrao.edu (8.14.4/8.14.4/smtp-gateway) with ESMTP id 46J9Ws6S031781
+	for <kmandar@aoc.nrao.edu>; Fri, 19 Jul 2024 03:32:54 -0600
+X-Spam-Status: No
+X-MailScanner-From: slurm@nrao.edu
+X-yoursite-MailScanner-SpamCheck: not spam, SpamAssassin (not cached,
+	score=-198.913, required 5, autolearn=not spam, BAYES_00 -1.90,
+	EMPTY_MESSAGE 2.32, NRAO_HEADER_PRESENT -100.00, SPF_HELO_NONE 0.00,
+	SPF_SOFTFAIL 0.67, TVD_SPACE_RATIO 0.00,
+	USER_IN_WELCOMELIST -100.00)
+X-MailScanner: Found to be clean
+X-yoursite-MailScanner-ID: 46J9WmMK1705602
+X-MailScanner-Information: Please contact the postmaster@aoc.nrao.edu for more information
+X-NRAO-Sekrit: 3C273
+Received: from nmpost-serv-1.aoc.nrao.edu (nmpost-serv-1.aoc.nrao.edu [10.64.10.99])
+	by revere-vml.aoc.nrao.edu (8.15.2/8.15.2/cv-ws-8.12) with ESMTPS id 46J9WmMK1705602
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
+	for <kmandar@aoc.nrao.edu>; Fri, 19 Jul 2024 03:32:48 -0600
+Received: (from slurm@localhost)
+	by nmpost-serv-1.aoc.nrao.edu (8.14.7/8.14.7/Submit) id 46J9WmpS235155
+	for kmandar; Fri, 19 Jul 2024 03:32:48 -0600
+From: slurm@nrao.edu
+Message-Id: <202407190932.46J9WmpS235155@nmpost-serv-1.aoc.nrao.edu>
+Date: Fri, 19 Jul 2024 03:32:48 -0600
+To: kmandar@nrao.edu
+Subject: nmpost Slurm Job_id=5179600 Name=spawner-jupyterhub Began, Queued time 00:00:00
+User-Agent: Heirloom mailx 12.5 7/5/10
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 8bit
+X-MIME-Autoconverted: from quoted-printable to 8bit by dropbox.aoc.nrao.edu id 46J9Ws6S031781
+
+
+From slurm@nrao.edu  Fri Jul 19 15:33:35 2024
+Return-Path: <slurm@nrao.edu>
+Received: from revere-vml.aoc.nrao.edu (revere-vml.aoc.nrao.edu [146.88.10.15])
+	by dropbox.aoc.nrao.edu (8.14.4/8.14.4/smtp-gateway) with ESMTP id 46JLXYEB006325
+	for <kmandar@aoc.nrao.edu>; Fri, 19 Jul 2024 15:33:35 -0600
+X-Spam-Status: No
+X-MailScanner-From: slurm@nrao.edu
+X-yoursite-MailScanner-SpamCheck: not spam, SpamAssassin (not cached,
+	score=-201.234, required 5, autolearn=not spam, BAYES_00 -1.90,
+	NRAO_HEADER_PRESENT -100.00, SPF_HELO_NONE 0.00, SPF_SOFTFAIL 0.67,
+	USER_IN_WELCOMELIST -100.00)
+X-MailScanner: Found to be clean
+X-yoursite-MailScanner-ID: 46JLXIi91855717
+X-MailScanner-Information: Please contact the postmaster@aoc.nrao.edu for more information
+X-NRAO-Sekrit: 3C273
+Received: from nmpost-serv-1.aoc.nrao.edu (nmpost-serv-1.aoc.nrao.edu [10.64.10.99])
+	by revere-vml.aoc.nrao.edu (8.15.2/8.15.2/cv-ws-8.12) with ESMTPS id 46JLXIi91855717
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
+	for <kmandar@aoc.nrao.edu>; Fri, 19 Jul 2024 15:33:18 -0600
+Received: (from slurm@localhost)
+	by nmpost-serv-1.aoc.nrao.edu (8.14.7/8.14.7/Submit) id 46JLXIwB233975
+	for kmandar; Fri, 19 Jul 2024 15:33:18 -0600
+From: slurm@nrao.edu
+Message-Id: <202407192133.46JLXIwB233975@nmpost-serv-1.aoc.nrao.edu>
+Date: Fri, 19 Jul 2024 15:33:18 -0600
+To: kmandar@nrao.edu
+Subject: nmpost Slurm Job_id=5179600 Name=spawner-jupyterhub Failed, Run
+ time 12:00:25, TIMEOUT, ExitCode 0
+User-Agent: Heirloom mailx 12.5 7/5/10
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+
+JobID: 5179600
+JobName: spawner-jupyterhub
+NodeList: herapost011
+State: TIMEOUT
+ExitCode: 0:0
+AllocCPUS: 1
+TotalCPU: 00:03.668
+Elapsed: 12:00:25
+ReqMem: 30G
+MaxRSS: 0.00G
+MaxVMSize: 0.00G
+WorkDir: /users/kmandar
+
+From krowe@nrao.edu  Thu Aug 22 11:56:24 2024
+Return-Path: <krowe@nrao.edu>
+Received: from revere-vml.aoc.nrao.edu (revere-vml.aoc.nrao.edu [146.88.10.15])
+	by dropbox.aoc.nrao.edu (8.14.4/8.14.4/smtp-gateway) with ESMTP id 47MHt22J031425
+	for <nm-lustre-users@aoc.nrao.edu>; Thu, 22 Aug 2024 11:55:02 -0600
+X-Spam-Status: No
+X-MailScanner-From: krowe@rastan.aoc.nrao.edu
+X-yoursite-MailScanner-SpamCheck: not spam, SpamAssassin (not cached,
+	score=-101.908, required 5, autolearn=not spam, BAYES_00 -1.90,
+	NRAO_HEADER_PRESENT -100.00, SPF_HELO_NONE 0.00, SPF_NONE 0.00,
+	T_SCC_BODY_TEXT_LINE -0.01)
+X-MailScanner: Found to be clean
+X-yoursite-MailScanner-ID: 47MHshQA1946044
+X-MailScanner-Information: Please contact the postmaster@aoc.nrao.edu for more information
+X-NRAO-Sekrit: 3C273
+Received: from rastan.aoc.nrao.edu (rastan.aoc.nrao.edu [10.64.103.139])
+	by revere-vml.aoc.nrao.edu (8.15.2/8.15.2/cv-ws-8.12) with ESMTPS id 47MHshQA1946044
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NO)
+	for <nm-lustre-users@aoc.nrao.edu>; Thu, 22 Aug 2024 11:54:43 -0600
+Received: (from krowe@localhost)
+	by rastan.aoc.nrao.edu (8.15.2/8.15.2/Submit) id 47MHshLo1115277
+	for nm-lustre-users@aoc.nrao.edu; Thu, 22 Aug 2024 11:54:43 -0600
+Date: Thu, 22 Aug 2024 11:54:43 -0600
+From: "K._Scott Rowe" <krowe@nrao.edu>
+To: nm-lustre-users@aoc.nrao.edu
+Subject: NRAO DSOC Power Outage Aug. 28
+Message-ID: <Zsd7Y5ODxFR7Ud+y@rastan.aoc.nrao.edu>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+On Wednesday August 28 starting at 7am, the NRAO DSOC data center will
+be shutdown in preparation for a building-wide power outage starting
+at 9am.  We expect the data center will be back up around 5pm that
+same day.
+
+During this time, all computer services in the DSOC will be
+unavailable.  All running jobs on the nmpost cluster will be killed.
+We ask that you end your job before Aug. 28 if you can.
+
+This outage is so we can energize our new solar panel system.
+
+--
+K. Scott Rowe -- Science Information Services
+Science Operations Center, National Radio Astronomy Observatory
+1011 Lopezville Socorro, NM 87801 
+krowe@nrao.edu -- 1.575.835.7193 -- www.nrao.edu
+
+From krowe@nrao.edu  Mon Aug 26 08:24:46 2024
+Return-Path: <krowe@nrao.edu>
+Received: from revere-vml.aoc.nrao.edu (revere-vml.aoc.nrao.edu [146.88.10.15])
+	by dropbox.aoc.nrao.edu (8.14.4/8.14.4/smtp-gateway) with ESMTP id 47QENc6O018778
+	for <nm-lustre-users@aoc.nrao.edu>; Mon, 26 Aug 2024 08:23:38 -0600
+X-Spam-Status: No
+X-MailScanner-From: krowe@nrao.edu
+X-yoursite-MailScanner-SpamCheck: not spam, SpamAssassin (not cached,
+	score=-2.42, required 5, autolearn=not spam, ARC_SIGNED 0.00,
+	ARC_VALID 0.00, BAYES_00 -1.90, DKIM_SIGNED 0.10, DKIM_VALID -0.01,
+	RCVD_IN_DNSWL_NONE -0.00, RCVD_IN_MSPIKE_H2 -0.60,
+	SPF_HELO_PASS -0.00, SPF_PASS -0.00, T_SCC_BODY_TEXT_LINE -0.01)
+X-MailScanner: Found to be clean
+X-yoursite-MailScanner-ID: 47QEN9qX2790479
+X-MailScanner-Information: Please contact the postmaster@aoc.nrao.edu for more information
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com (mail-bn8nam04lp2047.outbound.protection.outlook.com [104.47.74.47])
+	by revere-vml.aoc.nrao.edu (8.15.2/8.15.2/cv-ws-8.12) with ESMTPS id 47QEN9qX2790479
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <nm-lustre-users@aoc.nrao.edu>; Mon, 26 Aug 2024 08:23:29 -0600
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=j15zyE9H3FiuvKUfPre0jhj5Eag+0tCBl1m6RMoVeTme5OB+9rB+23aEWyQqu9U3EMy1sk1SNTTohvY8BftxB9znnMfdeAj9ib0t7dWRUI39WRWrI/h7H8g6noRRxNQeq2WnzY5f5ovq3ePaH1N3q+K6vo6PuBH8XXHcGXJuWXH2hgeZE3Gd9vGxoN+0F3widI9v/Tr4xrh2dwZQBCmmhmsTe3QkAmwr3TxZPQBs2wsYkOD8vIfyyGZ2wJA2cTsfZtTBXVsO8L3DIQUFQ6MjQm7aO4S9n6bCobJ+x7OCaWMVjGB0roaNEQuA7MTTsqLKUdGRLRwUqkp0fQpsyHCBzw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ctpH8sL2lTLWDOxx1wM5o7DfOl11tcAT2bFl2T6OCzA=;
+ b=bZTs0hZ7XshzNnbcbaqbCjNZzkb7B7R0ecs1lnLtW2HXCGsDKDqLem5GbODzpl/bKuLT0WJsPrY/bUEhCSpl6qfRgdKxo5Wbk2WJJ6JwZTAeeXb64oDwRPosGUg0uyHCpY2qPslF5JhivCAF31H9TuEj5j4lTqZNbYJX2I83TjFS7n04/U+zH62VxTFZ/b3QCXweQbSdP+yo2ukuF8bBRavsQ0kiGfCqW6lVUTxD5hWkKq2C7cO8UyfJi206XwJ8hAyvMihwBkLNEfqe4091seRiMtjcLGx4xqj9/LW4vOrkKN54fWimeew0hiBtNuoEpXAErz6UmuLpWAVKzTh+Eg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nrao.edu; dmarc=pass action=none header.from=nrao.edu;
+ dkim=pass header.d=nrao.edu; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nrao.onmicrosoft.com;
+ s=selector1-nrao-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ctpH8sL2lTLWDOxx1wM5o7DfOl11tcAT2bFl2T6OCzA=;
+ b=IrI19x6ZKtadDeluckGNommG8nVPxV8hGYGfj9yY9bBVJSJfeLK7xtzEj99Al2Flo4tUqlejt7xOgR59XjyUEtmc6X76dYtwRgd2xTq5mBJNO37yIM0Ww2p3KuOWzT8hwekBK0rGZgBOAR9Uzyti4jSVThsqGx4Sku7z1gxxziQ=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nrao.edu;
+Received: from PH8PR14MB7448.namprd14.prod.outlook.com (2603:10b6:510:22e::6)
+ by SN7PR14MB6153.namprd14.prod.outlook.com (2603:10b6:806:298::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7897.25; Mon, 26 Aug
+ 2024 14:23:07 +0000
+Received: from PH8PR14MB7448.namprd14.prod.outlook.com
+ ([fe80::22a8:12a8:4a03:35c6]) by PH8PR14MB7448.namprd14.prod.outlook.com
+ ([fe80::22a8:12a8:4a03:35c6%5]) with mapi id 15.20.7897.021; Mon, 26 Aug 2024
+ 14:23:07 +0000
+Message-ID: <23977c7d-65b0-4cf3-8823-d077c68ff28c@nrao.edu>
+Date: Mon, 26 Aug 2024 08:23:05 -0600
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+To: nm-lustre-users@aoc.nrao.edu
+From: "K._Scott Rowe" <krowe@nrao.edu>
+Subject: NRAO DSOC Power Outage Aug. 28 {External}
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MW4P221CA0022.NAMP221.PROD.OUTLOOK.COM
+ (2603:10b6:303:8b::27) To PH8PR14MB7448.namprd14.prod.outlook.com
+ (2603:10b6:510:22e::6)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH8PR14MB7448:EE_|SN7PR14MB6153:EE_
+X-MS-Office365-Filtering-Correlation-Id: 689d8778-21af-4cc0-ef18-08dcc5da9b10
+X-LD-Processed: 76999309-9e36-444d-bc21-0500ec3cfa17,ExtAddr
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|41050700001;
+X-Microsoft-Antispam-Message-Info:
+	LLmMWdVL6wzeiYiifLDSEWWkuiGivwo8pCwqRHmc/vo9Opde8+I6/C9K4119l4Apg4PFXwpqCm+TxmzgPbH3LEyTEgutAOGCxUJp6IX64qGlUEX30H2kvP1vVQrnly1MnrUaoL3r5PsBQyGrCwEs6Vo0ClbOnwHiFuDBsHSzt+tbHa+wnoypW9MyyUvnV+h4WlcaOryllAd4X4gESFJNQKzGVieeJ7HDoMP7J55wQsnoFOp/BRarL4/Z3N4L0ve1LP92pJ4ir2gnfejDpm6185W7uUlobeowfo1s2X7ML3cCMbE4w9Z8IyEVYEzeotLZwFEU4ynV0XcYba76ivWEziZom9UAszax4OKbv2zEB94YY8LK94VhlhBxXOddmtkZZW4OKVNsEKHLPLuyrOuvNK217ynhs0rAk5KbaAiHAkCwuhTjXlprjYzkRHO1Rjn5moHFWd2nQ1sQKCqiXVNqm6w1MSRXxYRHsC7EQfcewVhHxQoruTDHOhB7snPPm0Dd59QBTEoNoBkWaQ/YZfl4yGOcvYCPfrMsajskQSS9ZE6knb98+xcTEYdDo/6ko5Oc0YvGn2gXaH76isgG2nu0ov5i8hMzELR8ms1noOt7yoSjo9+xoPSQWltd0CraXN4hC3F/XnzjaeUqqSw5gBnNpdFsu2DoMob2IPj4kZp8w5drtTaGWQI4sKXznaK7MFFJzROe9xJS/Rc5WFyLEeu8nQ+u1rU0rXgW1Pry/HWlFLDrnad+HPAJXtAhgqS1LzeT
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH8PR14MB7448.namprd14.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(41050700001);DIR:INT;
+X-OriginatorOrg: nrao.edu
+X-MS-Exchange-CrossTenant-Network-Message-Id: 689d8778-21af-4cc0-ef18-08dcc5da9b10
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR14MB7448.namprd14.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Aug 2024 14:23:07.7214
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 76999309-9e36-444d-bc21-0500ec3cfa17
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: HCXzDLx6lkcDi0IOJ1EFuD8YUMGRZhhyxq1VCmN77NkByFXzkKefUyiHl8A8m2F3
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR14MB6153
+
+On Wednesday August 28 starting at 7am, the NRAO DSOC data center will
+be shutdown in preparation for a building-wide power outage starting
+at 9am.  We expect the data center will be back up around 5pm that
+same day.
+
+During this time, all computer services in the DSOC will be
+unavailable.  All running jobs on the nmpost cluster will be killed.
+We ask that you end your job before Aug. 28 if you can.
+
+This outage is so we can energize our new solar panel system.
+
+--
+K. Scott Rowe -- Science Information Services
+Science Operations Center, National Radio Astronomy Observatory
+1011 Lopezville Socorro, NM 87801
+krowe@nrao.edu -- 1.575.835.7193 -- www.nrao.edu
+
+From krowe@nrao.edu  Wed Aug 28 18:05:39 2024
+Return-Path: <krowe@nrao.edu>
+Received: from revere-vml.aoc.nrao.edu (revere-vml.aoc.nrao.edu [146.88.10.15])
+	by dropbox.aoc.nrao.edu (8.14.4/8.14.4/smtp-gateway) with ESMTP id 47T03Ok5024876
+	for <nm-lustre-users@aoc.nrao.edu>; Wed, 28 Aug 2024 18:03:24 -0600
+X-Spam-Status: No
+X-MailScanner-From: krowe@nmpost-master.aoc.nrao.edu
+X-yoursite-MailScanner-SpamCheck: not spam, SpamAssassin (not cached,
+	score=-101.908, required 5, autolearn=not spam, BAYES_00 -1.90,
+	NRAO_HEADER_PRESENT -100.00, SPF_HELO_NONE 0.00, SPF_NONE 0.00,
+	T_SCC_BODY_TEXT_LINE -0.01)
+X-MailScanner: Found to be clean
+X-yoursite-MailScanner-ID: 47T03IVj3460084
+X-MailScanner-Information: Please contact the postmaster@aoc.nrao.edu for more information
+X-NRAO-Sekrit: 3C273
+Received: from nmpost-master.aoc.nrao.edu (nmpost-master.aoc.nrao.edu [10.64.10.100])
+	by revere-vml.aoc.nrao.edu (8.15.2/8.15.2/cv-ws-8.12) with ESMTPS id 47T03IVj3460084
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NO)
+	for <nm-lustre-users@aoc.nrao.edu>; Wed, 28 Aug 2024 18:03:18 -0600
+Received: (from krowe@localhost)
+	by nmpost-master.aoc.nrao.edu (8.15.2/8.15.2/Submit) id 47T03IXt009002
+	for nm-lustre-users@aoc.nrao.edu; Wed, 28 Aug 2024 18:03:18 -0600
+Date: Wed, 28 Aug 2024 18:03:18 -0600
+From: "K._Scott Rowe" <krowe@nrao.edu>
+To: nm-lustre-users@aoc.nrao.edu
+Subject: DSOC Power Outage Aug. 28 all clear
+Message-ID: <Zs+6xqrL5AIo4Am4@nmpost-master.aoc.nrao.edu>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+
+At this point all computing services should be back online with the
+exception of recently ingested archive products and new procuts.  We
+will addres this tomorrow.  NRAO staff may need to reboot their Linux
+computer in order to mount /lustre/aoc and/or /stash properly.
+
+Any cluster jobs that you were running before the shutdown this
+morning have been killed and will need to be restarted if they are
+still needed.
+
+Also, with the Lustre upgrade, multi-node MPI jobs may have file
+locking problems on the nmpost cluster.  There is a fix comming for
+this but it wasn't ready in time for this upgrade.
+
+If you experience any problems please send email to helpdesk@aoc.nrao.edu.
+
+--
+K. Scott Rowe -- Science Information Services
+Science Operations Center, National Radio Astronomy Observatory
+1011 Lopezville Socorro, NM 87801
+krowe@nrao.edu -- 1.575.835.7193 -- www.nrao.edu
+
+From krowe@nrao.edu  Mon Sep  9 16:10:14 2024
+Return-Path: <krowe@nrao.edu>
+Received: from revere-vml.aoc.nrao.edu (revere-vml.aoc.nrao.edu [146.88.10.15])
+	by dropbox.aoc.nrao.edu (8.14.4/8.14.4/smtp-gateway) with ESMTP id 489M8Nxi018622
+	for <nm-lustre-users@aoc.nrao.edu>; Mon, 9 Sep 2024 16:08:23 -0600
+X-Spam-Status: No
+X-MailScanner-From: krowe@rastan.aoc.nrao.edu
+X-yoursite-MailScanner-SpamCheck: not spam, SpamAssassin (not cached,
+	score=-101.898, required 5, autolearn=not spam, BAYES_00 -1.90,
+	NRAO_HEADER_PRESENT -100.00, SPF_HELO_NONE 0.00, SPF_NONE 0.00)
+X-MailScanner: Found to be clean
+X-yoursite-MailScanner-ID: 489M8DZ62051915
+X-MailScanner-Information: Please contact the postmaster@aoc.nrao.edu for more information
+X-NRAO-Sekrit: 3C273
+Received: from rastan.aoc.nrao.edu (rastan.aoc.nrao.edu [10.64.103.139])
+	by revere-vml.aoc.nrao.edu (8.15.2/8.15.2/cv-ws-8.12) with ESMTPS id 489M8DZ62051915
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NO)
+	for <nm-lustre-users@aoc.nrao.edu>; Mon, 9 Sep 2024 16:08:13 -0600
+Received: (from krowe@localhost)
+	by rastan.aoc.nrao.edu (8.15.2/8.15.2/Submit) id 489M8Dii388771
+	for nm-lustre-users@aoc.nrao.edu; Mon, 9 Sep 2024 16:08:13 -0600
+Date: Mon, 9 Sep 2024 16:08:13 -0600
+From: "K._Scott Rowe" <krowe@nrao.edu>
+To: nm-lustre-users@aoc.nrao.edu
+Subject: reboot of ssh.aoc.nrao.edu
+Message-ID: <Zt9xzWze68AJbeqw@rastan.aoc.nrao.edu>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+We had a lustre incident that caused our login server (gygax) to hang
+when accessing our Lustre filesystem.  Unfortunately, the only solution
+to this is to reboot gygax.
+
+Since this is affecting the ability of many users to login, we will
+reboot gygax today at 4:30pm today Mountain time.
+
+I am sorry for the trouble.
+
+--
+K. Scott Rowe -- Science Information Services
+Science Operations Center, National Radio Astronomy Observatory
+1011 Lopezville Socorro, NM 87801
+krowe@nrao.edu -- 1.575.835.7193 -- http://www.nrao.edu/<http://www.nrao.edu/>
+
+From pmurphy@nrao.edu  Tue Oct 15 11:12:00 2024
+Return-Path: <pmurphy@nrao.edu>
+Received: from cv3.cv.nrao.edu (cv3.cv.nrao.edu [192.33.115.2])
+	by dropbox.aoc.nrao.edu (8.14.4/8.14.4/smtp-gateway) with ESMTP id 49EFYcMH012416
+	for <nm-lustre-users@aoc.nrao.edu>; Mon, 14 Oct 2024 09:34:39 -0600
+X-Spam-Status: No
+X-MailScanner-From: pmurphy@nrao.edu
+X-NRAO-CV-MailScanner-SpamCheck: not spam, SpamAssassin (not cached,
+	score=-200.01, required 5, autolearn=disabled,
+	NRAO_HEADER_PRESENT -100.00, SPF_HELO_NONE 0.00, SPF_PASS -0.00,
+	USER_IN_WELCOMELIST -0.01, USER_IN_WHITELIST -100.00)
+X-MailScanner: Found to be clean
+X-MailScanner-Information: Please contact postmaster@cv.nrao.edu for more information
+X-NRAO-Sekrit: 3C273
+Received: from paula.cv.nrao.edu (paula.cv.nrao.edu [192.33.115.33])
+	by cv3.cv.nrao.edu (8.14.7/8.14.7) with ESMTP id 49EFYL7l017652
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
+	Mon, 14 Oct 2024 11:34:22 -0400
+Received: from lunasa.nrao.edu (lunasa.cv.nrao.edu [10.2.101.186])
+	(authenticated bits=0)
+	by paula.cv.nrao.edu (8.14.7/8.14.7) with ESMTP id 49EFYJKJ006892
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 14 Oct 2024 11:34:21 -0400
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+Message-ID: <26381.14843.667769.503086@gargle.gargle.HOWL>
+Date: Mon, 14 Oct 2024 11:34:19 -0400
+From: Patrick P Murphy <pmurphy@nrao.edu>
+To: nm-lustre-users@aoc.nrao.edu
+Subject: AOC Lustre Problems
+X-Mailer: VM 8.2.0b under 26.1 (x86_64-redhat-linux-gnu)
+Reply-To: switz@nrao.edu, cclark@nrao.edu
+
+Sending this on behalf of the SIS Storage & Databases Working Group.
+
+The DSOC's lustre filesystem, /lustre/aoc, which supports the archive,
+pipeline operations, staff and observer processing, is offline while
+we resolve system issues. Please refrain from starting any new jobs
+and abort any jobs you have in-process. We will reply to this email
+with further details and a timeline for restoring the service once we
+ascertain them. 
+
+ - Stephan Witz and Chris Clark, SIS
+
+From pmurphy@nrao.edu  Fri Oct 18 12:36:25 2024
+Return-Path: <pmurphy@nrao.edu>
+Received: from cv3.cv.nrao.edu (cv3.cv.nrao.edu [192.33.115.2])
+	by dropbox.aoc.nrao.edu (8.14.4/8.14.4/smtp-gateway) with ESMTP id 49IIZ0Pd031982
+	for <nm-lustre-users@aoc.nrao.edu>; Fri, 18 Oct 2024 12:35:00 -0600
+X-Spam-Status: No
+X-MailScanner-From: pmurphy@nrao.edu
+X-NRAO-CV-MailScanner-SpamCheck: not spam, SpamAssassin (not cached,
+	score=-200.01, required 5, autolearn=disabled,
+	NRAO_HEADER_PRESENT -100.00, SPF_HELO_NONE 0.00, SPF_PASS -0.00,
+	USER_IN_WELCOMELIST -0.01, USER_IN_WHITELIST -100.00)
+X-MailScanner: Found to be clean
+X-MailScanner-Information: Please contact postmaster@cv.nrao.edu for more information
+X-NRAO-Sekrit: 3C273
+Received: from paula.cv.nrao.edu (paula.cv.nrao.edu [192.33.115.33])
+	by cv3.cv.nrao.edu (8.14.7/8.14.7) with ESMTP id 49IIYmO1030273
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
+	Fri, 18 Oct 2024 14:34:48 -0400
+Received: from lunasa.nrao.edu (lunasa.cv.nrao.edu [10.2.101.186])
+	(authenticated bits=0)
+	by paula.cv.nrao.edu (8.14.7/8.14.7) with ESMTP id 49IIYkki030084
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 18 Oct 2024 14:34:48 -0400
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+Message-ID: <26386.43590.725288.732554@gargle.gargle.HOWL>
+Date: Fri, 18 Oct 2024 14:34:46 -0400
+From: Patrick P Murphy <pmurphy@nrao.edu>
+To: nm-lustre-users@aoc.nrao.edu
+Cc: switz@nrao.edu, cclark@nrao.edu
+Subject: Re: AOC Lustre Problems
+References: <26381.14843.667769.503086@gargle.gargle.HOWL>
+X-Mailer: VM 8.2.0b under 26.1 (x86_64-redhat-linux-gnu)
+
+The AOC Lustre filesystem has been restored.  The issues stemmed from
+a shortage of "inodes", meaning there were too many (mostly small)
+files being created and not removed.  
+
+That said, more work will be required - reducing the inode count is a
+temporary measure.  The best solution would be a complete hardware
+replacement (disks and all) but a more practical measure is to add a
+second metadata server (MDS).  We are pursuing the latter.
+
+In the meantime, please keep an eye on your use of Lustre.  In
+particular, please
+
+ - delete old files and directories, or back them up elsewhere;
+
+ - use "tar" to consolidate many small files into one big one:
+   tar zcvf myname.tgz /lustre/aoc/path/to/my/files/
+  (and then delete the original files, keeping myname.tgz).
+
+ - If using Conda or Miniconda, watch its space (and file count)
+   usage.
+
+ - bear in mind - Lustre was designed for, and works best with, large
+   files. 
+
+On Mon, 14 Oct 2024 11:34:19 -0400, Patrick P Murphy
+<pmurphy@nrao.edu> said: 
+
+> Sending this on behalf of the SIS Storage & Databases Working Group.
+> The DSOC's lustre filesystem, /lustre/aoc, which supports the
+> archive, pipeline operations, staff and observer processing, is
+> offline while we resolve system issues. Please refrain from starting
+> any new jobs and abort any jobs you have in-process. We will reply
+> to this email with further details and a timeline for restoring the
+> service once we ascertain them.
+
+>  - Stephan Witz and Chris Clark, SIS
+
+-- 
+Patrick P. Murphy, Ph.D.		https://www.nrao.edu/~pmurphy/
+Charlottesville Site Manager,		Mobile (Work): +1-434-422-6057
+Science Information Systems		Office (W/Th): +1-434-296-0372
+
+From root@gygax.aoc.nrao.edu  Mon Dec  9 10:31:44 2024
+Return-Path: <root@gygax.aoc.nrao.edu>
+Received: from revere-vml.aoc.nrao.edu (revere-vml.aoc.nrao.edu [146.88.10.15])
+	by dropbox.aoc.nrao.edu (8.14.4/8.14.4/smtp-gateway) with ESMTP id 4B9HTwV0010494
+	for <nm-lustre-users@nrao.edu>; Mon, 9 Dec 2024 10:29:58 -0700
+X-Spam-Status: No
+X-MailScanner-From: root@gygax.aoc.nrao.edu
+X-yoursite-MailScanner-SpamCheck: not spam, SpamAssassin (not cached,
+	score=-100.877, required 5, autolearn=not spam, BAYES_00 -1.90,
+	MISSING_HEADERS 1.02, NRAO_HEADER_PRESENT -100.00,
+	SPF_HELO_NONE 0.00, SPF_NONE 0.00)
+X-MailScanner: Found to be clean
+X-yoursite-MailScanner-ID: 4B9HTq6n316404
+X-MailScanner-Information: Please contact the postmaster@aoc.nrao.edu for more information
+X-NRAO-Sekrit: 3C273
+Received: from gygax.aoc.nrao.edu (gygax.aoc.nrao.edu [146.88.10.42])
+	by revere-vml.aoc.nrao.edu (8.15.2/8.15.2/cv-ws-8.12) with ESMTPS id 4B9HTq6n316404
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NO)
+	for <nm-lustre-users@nrao.edu>; Mon, 9 Dec 2024 10:29:52 -0700
+Received: (from root@localhost)
+	by gygax.aoc.nrao.edu (8.15.2/8.15.2/Submit) id 4B9HTqNv3388061
+	for nm-lustre-users@nrao.edu; Mon, 9 Dec 2024 10:29:52 -0700
+Date: Mon, 9 Dec 2024 10:29:52 -0700
+From: root <root@gygax.aoc.nrao.edu>
+Message-Id: <202412091729.4B9HTqNv3388061@gygax.aoc.nrao.edu>
+Subject: Gygax login server reboot
+
+All,
+Lustre is having issues on "gygax," our login server. This is impacting observing, as those with nm-xxxx accounts cannot log in. This problem is also impacting any FastX remote connections. We are working on the issue but do not currently have an ETA for a fix; we appreciate your patience."
+
+Timothy Schnedler
+NRAO Systems Admin III
+tschnedl@nrao.edu
+
+From slurm@nrao.edu  Sun Dec 15 22:27:01 2024
+Return-Path: <slurm@nrao.edu>
+Received: from revere-vml.aoc.nrao.edu (revere-vml.aoc.nrao.edu [146.88.10.15])
+	by dropbox.aoc.nrao.edu (8.14.4/8.14.4/smtp-gateway) with ESMTP id 4BG5R1VH017498
+	for <kmandar@nmpost-serv-2.aoc.nrao.edu>; Sun, 15 Dec 2024 22:27:01 -0700
+X-Spam-Status: No
+X-MailScanner-From: slurm@nmpost-serv-2.aoc.nrao.edu
+X-yoursite-MailScanner-SpamCheck: not spam, SpamAssassin (not cached,
+	score=-99.577, required 5, autolearn=not spam, BAYES_00 -1.90,
+	EMPTY_MESSAGE 2.32, NRAO_HEADER_PRESENT -100.00, SPF_HELO_NONE 0.00,
+	SPF_NONE 0.00, TVD_SPACE_RATIO 0.00)
+X-MailScanner: Found to be clean
+X-yoursite-MailScanner-ID: 4BG5Qt711878135
+X-MailScanner-Information: Please contact the postmaster@aoc.nrao.edu for more information
+X-NRAO-Sekrit: 3C273
+Received: from nmpost-serv-2.aoc.nrao.edu (nmpost-serv-2.aoc.nrao.edu [10.64.10.98])
+	by revere-vml.aoc.nrao.edu (8.15.2/8.15.2/cv-ws-8.12) with ESMTPS id 4BG5Qt711878135
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NO)
+	for <kmandar@nmpost-serv-2.aoc.nrao.edu>; Sun, 15 Dec 2024 22:26:55 -0700
+Received: (from slurm@localhost)
+	by nmpost-serv-2.aoc.nrao.edu (8.15.2/8.15.2/Submit) id 4BG5Qtci2057281
+	for kmandar; Sun, 15 Dec 2024 22:26:55 -0700
+From: NM_Service SLURM_workload_manager <slurm@nrao.edu>
+Message-Id: <202412160526.4BG5Qtci2057281@nmpost-serv-2.aoc.nrao.edu>
+Date: Sun, 15 Dec 2024 22:26:55 -0700
+To: kmandar@nrao.edu
+Subject: nmpost Slurm Job_id=385036 Name=spawner-jupyterhub Began, Queued
+ time 00:00:00
+User-Agent: Heirloom mailx 12.5 7/5/10
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 8bit
+X-MIME-Autoconverted: from quoted-printable to 8bit by dropbox.aoc.nrao.edu id 4BG5R1VH017498
+
+
+From slurm@nrao.edu  Sun Dec 15 22:52:39 2024
+Return-Path: <slurm@nrao.edu>
+Received: from revere-vml.aoc.nrao.edu (revere-vml.aoc.nrao.edu [146.88.10.15])
+	by dropbox.aoc.nrao.edu (8.14.4/8.14.4/smtp-gateway) with ESMTP id 4BG5qdlq024784
+	for <kmandar@nmpost-serv-2.aoc.nrao.edu>; Sun, 15 Dec 2024 22:52:39 -0700
+X-Spam-Status: No
+X-MailScanner-From: slurm@nmpost-serv-2.aoc.nrao.edu
+X-yoursite-MailScanner-SpamCheck: not spam, SpamAssassin (not cached,
+	score=-101.898, required 5, autolearn=not spam, BAYES_00 -1.90,
+	NRAO_HEADER_PRESENT -100.00, SPF_HELO_NONE 0.00, SPF_NONE 0.00)
+X-MailScanner: Found to be clean
+X-yoursite-MailScanner-ID: 4BG5qXRg1880797
+X-MailScanner-Information: Please contact the postmaster@aoc.nrao.edu for more information
+X-NRAO-Sekrit: 3C273
+Received: from nmpost-serv-2.aoc.nrao.edu (nmpost-serv-2.aoc.nrao.edu [10.64.10.98])
+	by revere-vml.aoc.nrao.edu (8.15.2/8.15.2/cv-ws-8.12) with ESMTPS id 4BG5qXRg1880797
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NO)
+	for <kmandar@nmpost-serv-2.aoc.nrao.edu>; Sun, 15 Dec 2024 22:52:33 -0700
+Received: (from slurm@localhost)
+	by nmpost-serv-2.aoc.nrao.edu (8.15.2/8.15.2/Submit) id 4BG5qXPR2063250
+	for kmandar; Sun, 15 Dec 2024 22:52:33 -0700
+From: NM_Service SLURM_workload_manager <slurm@nrao.edu>
+Message-Id: <202412160552.4BG5qXPR2063250@nmpost-serv-2.aoc.nrao.edu>
+Date: Sun, 15 Dec 2024 22:52:33 -0700
+To: kmandar@nrao.edu
+Subject: nmpost Slurm Job_id=385036 Name=spawner-jupyterhub Ended, Run
+ time 00:25:33, CANCELLED, ExitCode 0
+User-Agent: Heirloom mailx 12.5 7/5/10
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+
+JobID: 385036
+JobName: spawner-jupyterhub
+NodeList: herapost011
+State: CANCELLED by 10045
+ExitCode: 0:0
+AllocCPUS: 1
+TotalCPU: 00:04.543
+Elapsed: 00:25:33
+ReqMem: 30G
+MaxRSS: 0.00G
+MaxVMSize: 0.02G
+WorkDir: /users/kmandar
+
+From slurm@nrao.edu  Sun Dec 15 22:53:27 2024
+Return-Path: <slurm@nrao.edu>
+Received: from revere-vml.aoc.nrao.edu (revere-vml.aoc.nrao.edu [146.88.10.15])
+	by dropbox.aoc.nrao.edu (8.14.4/8.14.4/smtp-gateway) with ESMTP id 4BG5rRlY024946
+	for <kmandar@nmpost-serv-2.aoc.nrao.edu>; Sun, 15 Dec 2024 22:53:27 -0700
+X-Spam-Status: No
+X-MailScanner-From: slurm@nmpost-serv-2.aoc.nrao.edu
+X-yoursite-MailScanner-SpamCheck: not spam, SpamAssassin (cached,
+	score=-99.577, required 5, autolearn=not spam, BAYES_00 -1.90,
+	EMPTY_MESSAGE 2.32, NRAO_HEADER_PRESENT -100.00, SPF_HELO_NONE 0.00,
+	SPF_NONE 0.00, TVD_SPACE_RATIO 0.00)
+X-MailScanner: Found to be clean
+X-yoursite-MailScanner-ID: 4BG5rPIH1880822
+X-MailScanner-Information: Please contact the postmaster@aoc.nrao.edu for more information
+X-NRAO-Sekrit: 3C273
+Received: from nmpost-serv-2.aoc.nrao.edu (nmpost-serv-2.aoc.nrao.edu [10.64.10.98])
+	by revere-vml.aoc.nrao.edu (8.15.2/8.15.2/cv-ws-8.12) with ESMTPS id 4BG5rPIH1880822
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NO)
+	for <kmandar@nmpost-serv-2.aoc.nrao.edu>; Sun, 15 Dec 2024 22:53:25 -0700
+Received: (from slurm@localhost)
+	by nmpost-serv-2.aoc.nrao.edu (8.15.2/8.15.2/Submit) id 4BG5rPc82063472
+	for kmandar; Sun, 15 Dec 2024 22:53:25 -0700
+From: NM_Service SLURM_workload_manager <slurm@nrao.edu>
+Message-Id: <202412160553.4BG5rPc82063472@nmpost-serv-2.aoc.nrao.edu>
+Date: Sun, 15 Dec 2024 22:53:25 -0700
+To: kmandar@nrao.edu
+Subject: nmpost Slurm Job_id=385037 Name=spawner-jupyterhub Began, Queued
+ time 00:00:00
+User-Agent: Heirloom mailx 12.5 7/5/10
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 8bit
+X-MIME-Autoconverted: from quoted-printable to 8bit by dropbox.aoc.nrao.edu id 4BG5rRlY024946
+
+
+From slurm@nrao.edu  Sun Dec 15 22:56:57 2024
+Return-Path: <slurm@nrao.edu>
+Received: from revere-vml.aoc.nrao.edu (revere-vml.aoc.nrao.edu [146.88.10.15])
+	by dropbox.aoc.nrao.edu (8.14.4/8.14.4/smtp-gateway) with ESMTP id 4BG5uvZg026144
+	for <kmandar@nmpost-serv-2.aoc.nrao.edu>; Sun, 15 Dec 2024 22:56:57 -0700
+X-Spam-Status: No
+X-MailScanner-From: slurm@nmpost-serv-2.aoc.nrao.edu
+X-yoursite-MailScanner-SpamCheck: not spam, SpamAssassin (not cached,
+	score=-101.898, required 5, autolearn=not spam, BAYES_00 -1.90,
+	NRAO_HEADER_PRESENT -100.00, SPF_HELO_NONE 0.00, SPF_NONE 0.00)
+X-MailScanner: Found to be clean
+X-yoursite-MailScanner-ID: 4BG5ug3P1881039
+X-MailScanner-Information: Please contact the postmaster@aoc.nrao.edu for more information
+X-NRAO-Sekrit: 3C273
+Received: from nmpost-serv-2.aoc.nrao.edu (nmpost-serv-2.aoc.nrao.edu [10.64.10.98])
+	by revere-vml.aoc.nrao.edu (8.15.2/8.15.2/cv-ws-8.12) with ESMTPS id 4BG5ug3P1881039
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NO)
+	for <kmandar@nmpost-serv-2.aoc.nrao.edu>; Sun, 15 Dec 2024 22:56:42 -0700
+Received: (from slurm@localhost)
+	by nmpost-serv-2.aoc.nrao.edu (8.15.2/8.15.2/Submit) id 4BG5ugdS2064335
+	for kmandar; Sun, 15 Dec 2024 22:56:42 -0700
+From: NM_Service SLURM_workload_manager <slurm@nrao.edu>
+Message-Id: <202412160556.4BG5ugdS2064335@nmpost-serv-2.aoc.nrao.edu>
+Date: Sun, 15 Dec 2024 22:56:42 -0700
+To: kmandar@nrao.edu
+Subject: nmpost Slurm Job_id=385037 Name=spawner-jupyterhub Ended, Run
+ time 00:03:13, CANCELLED, ExitCode 0
+User-Agent: Heirloom mailx 12.5 7/5/10
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+
+JobID: 385037
+JobName: spawner-jupyterhub
+NodeList: herapost011
+State: CANCELLED by 10045
+ExitCode: 0:0
+AllocCPUS: 1
+TotalCPU: 00:02.837
+Elapsed: 00:03:13
+ReqMem: 30G
+MaxRSS: 0.00G
+MaxVMSize: 0.00G
+WorkDir: /users/kmandar
+
+From slurm@nrao.edu  Sun Dec 15 22:58:25 2024
+Return-Path: <slurm@nrao.edu>
+Received: from revere-vml.aoc.nrao.edu (revere-vml.aoc.nrao.edu [146.88.10.15])
+	by dropbox.aoc.nrao.edu (8.14.4/8.14.4/smtp-gateway) with ESMTP id 4BG5wOrG027101
+	for <kmandar@nmpost-serv-2.aoc.nrao.edu>; Sun, 15 Dec 2024 22:58:25 -0700
+X-Spam-Status: No
+X-MailScanner-From: slurm@nmpost-serv-2.aoc.nrao.edu
+X-yoursite-MailScanner-SpamCheck: not spam, SpamAssassin (not cached,
+	score=-99.577, required 5, autolearn=not spam, BAYES_00 -1.90,
+	EMPTY_MESSAGE 2.32, NRAO_HEADER_PRESENT -100.00, SPF_HELO_NONE 0.00,
+	SPF_NONE 0.00, TVD_SPACE_RATIO 0.00)
+X-MailScanner: Found to be clean
+X-yoursite-MailScanner-ID: 4BG5wJ3N1881171
+X-MailScanner-Information: Please contact the postmaster@aoc.nrao.edu for more information
+X-NRAO-Sekrit: 3C273
+Received: from nmpost-serv-2.aoc.nrao.edu (nmpost-serv-2.aoc.nrao.edu [10.64.10.98])
+	by revere-vml.aoc.nrao.edu (8.15.2/8.15.2/cv-ws-8.12) with ESMTPS id 4BG5wJ3N1881171
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NO)
+	for <kmandar@nmpost-serv-2.aoc.nrao.edu>; Sun, 15 Dec 2024 22:58:19 -0700
+Received: (from slurm@localhost)
+	by nmpost-serv-2.aoc.nrao.edu (8.15.2/8.15.2/Submit) id 4BG5wJOW2064774
+	for kmandar; Sun, 15 Dec 2024 22:58:19 -0700
+From: NM_Service SLURM_workload_manager <slurm@nrao.edu>
+Message-Id: <202412160558.4BG5wJOW2064774@nmpost-serv-2.aoc.nrao.edu>
+Date: Sun, 15 Dec 2024 22:58:19 -0700
+To: kmandar@nrao.edu
+Subject: nmpost Slurm Job_id=385038 Name=spawner-jupyterhub Began, Queued
+ time 00:00:00
+User-Agent: Heirloom mailx 12.5 7/5/10
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 8bit
+X-MIME-Autoconverted: from quoted-printable to 8bit by dropbox.aoc.nrao.edu id 4BG5wOrG027101
+
+
+From slurm@nrao.edu  Sun Dec 15 23:09:38 2024
+Return-Path: <slurm@nrao.edu>
+Received: from revere-vml.aoc.nrao.edu (revere-vml.aoc.nrao.edu [146.88.10.15])
+	by dropbox.aoc.nrao.edu (8.14.4/8.14.4/smtp-gateway) with ESMTP id 4BG69cmv029697
+	for <kmandar@nmpost-serv-2.aoc.nrao.edu>; Sun, 15 Dec 2024 23:09:38 -0700
+X-Spam-Status: No
+X-MailScanner-From: slurm@nmpost-serv-2.aoc.nrao.edu
+X-yoursite-MailScanner-SpamCheck: not spam, SpamAssassin (not cached,
+	score=-101.898, required 5, autolearn=not spam, BAYES_00 -1.90,
+	NRAO_HEADER_PRESENT -100.00, SPF_HELO_NONE 0.00, SPF_NONE 0.00)
+X-MailScanner: Found to be clean
+X-yoursite-MailScanner-ID: 4BG69Uta1882754
+X-MailScanner-Information: Please contact the postmaster@aoc.nrao.edu for more information
+X-NRAO-Sekrit: 3C273
+Received: from nmpost-serv-2.aoc.nrao.edu (nmpost-serv-2.aoc.nrao.edu [10.64.10.98])
+	by revere-vml.aoc.nrao.edu (8.15.2/8.15.2/cv-ws-8.12) with ESMTPS id 4BG69Uta1882754
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NO)
+	for <kmandar@nmpost-serv-2.aoc.nrao.edu>; Sun, 15 Dec 2024 23:09:30 -0700
+Received: (from slurm@localhost)
+	by nmpost-serv-2.aoc.nrao.edu (8.15.2/8.15.2/Submit) id 4BG69Urj2067724
+	for kmandar; Sun, 15 Dec 2024 23:09:30 -0700
+From: NM_Service SLURM_workload_manager <slurm@nrao.edu>
+Message-Id: <202412160609.4BG69Urj2067724@nmpost-serv-2.aoc.nrao.edu>
+Date: Sun, 15 Dec 2024 23:09:30 -0700
+To: kmandar@nrao.edu
+Subject: nmpost Slurm Job_id=385038 Name=spawner-jupyterhub Ended, Run
+ time 00:11:07, CANCELLED, ExitCode 0
+User-Agent: Heirloom mailx 12.5 7/5/10
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+
+JobID: 385038
+JobName: spawner-jupyterhub
+NodeList: herapost011
+State: CANCELLED by 10045
+ExitCode: 0:0
+AllocCPUS: 1
+TotalCPU: 00:07.786
+Elapsed: 00:11:07
+ReqMem: 30G
+MaxRSS: 0.00G
+MaxVMSize: 0.00G
+WorkDir: /users/kmandar
+
+From slurm@nrao.edu  Sun Dec 15 23:13:05 2024
+Return-Path: <slurm@nrao.edu>
+Received: from revere-vml.aoc.nrao.edu (revere-vml.aoc.nrao.edu [146.88.10.15])
+	by dropbox.aoc.nrao.edu (8.14.4/8.14.4/smtp-gateway) with ESMTP id 4BG6D5R0030506
+	for <kmandar@nmpost-serv-2.aoc.nrao.edu>; Sun, 15 Dec 2024 23:13:05 -0700
+X-Spam-Status: No
+X-MailScanner-From: slurm@nmpost-serv-2.aoc.nrao.edu
+X-yoursite-MailScanner-SpamCheck: not spam, SpamAssassin (cached,
+	score=-99.577, required 5, autolearn=not spam, BAYES_00 -1.90,
+	EMPTY_MESSAGE 2.32, NRAO_HEADER_PRESENT -100.00, SPF_HELO_NONE 0.00,
+	SPF_NONE 0.00, TVD_SPACE_RATIO 0.00)
+X-MailScanner: Found to be clean
+X-yoursite-MailScanner-ID: 4BG6D5wO1883087
+X-MailScanner-Information: Please contact the postmaster@aoc.nrao.edu for more information
+X-NRAO-Sekrit: 3C273
+Received: from nmpost-serv-2.aoc.nrao.edu (nmpost-serv-2.aoc.nrao.edu [10.64.10.98])
+	by revere-vml.aoc.nrao.edu (8.15.2/8.15.2/cv-ws-8.12) with ESMTPS id 4BG6D5wO1883087
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NO)
+	for <kmandar@nmpost-serv-2.aoc.nrao.edu>; Sun, 15 Dec 2024 23:13:05 -0700
+Received: (from slurm@localhost)
+	by nmpost-serv-2.aoc.nrao.edu (8.15.2/8.15.2/Submit) id 4BG6D5v32068523
+	for kmandar; Sun, 15 Dec 2024 23:13:05 -0700
+From: NM_Service SLURM_workload_manager <slurm@nrao.edu>
+Message-Id: <202412160613.4BG6D5v32068523@nmpost-serv-2.aoc.nrao.edu>
+Date: Sun, 15 Dec 2024 23:13:05 -0700
+To: kmandar@nrao.edu
+Subject: nmpost Slurm Job_id=385039 Name=spawner-jupyterhub Began, Queued
+ time 00:00:00
+User-Agent: Heirloom mailx 12.5 7/5/10
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 8bit
+X-MIME-Autoconverted: from quoted-printable to 8bit by dropbox.aoc.nrao.edu id 4BG6D5R0030506
+
+
+From slurm@nrao.edu  Sun Dec 15 23:18:12 2024
+Return-Path: <slurm@nrao.edu>
+Received: from revere-vml.aoc.nrao.edu (revere-vml.aoc.nrao.edu [146.88.10.15])
+	by dropbox.aoc.nrao.edu (8.14.4/8.14.4/smtp-gateway) with ESMTP id 4BG6ICke031863
+	for <kmandar@nmpost-serv-2.aoc.nrao.edu>; Sun, 15 Dec 2024 23:18:12 -0700
+X-Spam-Status: No
+X-MailScanner-From: slurm@nmpost-serv-2.aoc.nrao.edu
+X-yoursite-MailScanner-SpamCheck: not spam, SpamAssassin (not cached,
+	score=-101.898, required 5, autolearn=not spam, BAYES_00 -1.90,
+	NRAO_HEADER_PRESENT -100.00, SPF_HELO_NONE 0.00, SPF_NONE 0.00)
+X-MailScanner: Found to be clean
+X-yoursite-MailScanner-ID: 4BG6I5bK1884026
+X-MailScanner-Information: Please contact the postmaster@aoc.nrao.edu for more information
+X-NRAO-Sekrit: 3C273
+Received: from nmpost-serv-2.aoc.nrao.edu (nmpost-serv-2.aoc.nrao.edu [10.64.10.98])
+	by revere-vml.aoc.nrao.edu (8.15.2/8.15.2/cv-ws-8.12) with ESMTPS id 4BG6I5bK1884026
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NO)
+	for <kmandar@nmpost-serv-2.aoc.nrao.edu>; Sun, 15 Dec 2024 23:18:05 -0700
+Received: (from slurm@localhost)
+	by nmpost-serv-2.aoc.nrao.edu (8.15.2/8.15.2/Submit) id 4BG6I5ad2069784
+	for kmandar; Sun, 15 Dec 2024 23:18:05 -0700
+From: NM_Service SLURM_workload_manager <slurm@nrao.edu>
+Message-Id: <202412160618.4BG6I5ad2069784@nmpost-serv-2.aoc.nrao.edu>
+Date: Sun, 15 Dec 2024 23:18:05 -0700
+To: kmandar@nrao.edu
+Subject: nmpost Slurm Job_id=385039 Name=spawner-jupyterhub Ended, Run
+ time 00:04:56, CANCELLED, ExitCode 0
+User-Agent: Heirloom mailx 12.5 7/5/10
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+
+JobID: 385039
+JobName: spawner-jupyterhub
+NodeList: herapost011
+State: CANCELLED by 10045
+ExitCode: 0:0
+AllocCPUS: 1
+TotalCPU: 00:04.466
+Elapsed: 00:04:56
+ReqMem: 30G
+MaxRSS: 0.00G
+MaxVMSize: 0.00G
+WorkDir: /users/kmandar
+
+From slurm@nrao.edu  Sun Dec 15 23:19:33 2024
+Return-Path: <slurm@nrao.edu>
+Received: from revere-vml.aoc.nrao.edu (revere-vml.aoc.nrao.edu [146.88.10.15])
+	by dropbox.aoc.nrao.edu (8.14.4/8.14.4/smtp-gateway) with ESMTP id 4BG6JXqe032126
+	for <kmandar@nmpost-serv-2.aoc.nrao.edu>; Sun, 15 Dec 2024 23:19:33 -0700
+X-Spam-Status: No
+X-MailScanner-From: slurm@nmpost-serv-2.aoc.nrao.edu
+X-yoursite-MailScanner-SpamCheck: not spam, SpamAssassin (cached,
+	score=-99.577, required 5, autolearn=not spam, BAYES_00 -1.90,
+	EMPTY_MESSAGE 2.32, NRAO_HEADER_PRESENT -100.00, SPF_HELO_NONE 0.00,
+	SPF_NONE 0.00, TVD_SPACE_RATIO 0.00)
+X-MailScanner: Found to be clean
+X-yoursite-MailScanner-ID: 4BG6JWdL1884143
+X-MailScanner-Information: Please contact the postmaster@aoc.nrao.edu for more information
+X-NRAO-Sekrit: 3C273
+Received: from nmpost-serv-2.aoc.nrao.edu (nmpost-serv-2.aoc.nrao.edu [10.64.10.98])
+	by revere-vml.aoc.nrao.edu (8.15.2/8.15.2/cv-ws-8.12) with ESMTPS id 4BG6JWdL1884143
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NO)
+	for <kmandar@nmpost-serv-2.aoc.nrao.edu>; Sun, 15 Dec 2024 23:19:32 -0700
+Received: (from slurm@localhost)
+	by nmpost-serv-2.aoc.nrao.edu (8.15.2/8.15.2/Submit) id 4BG6JWbi2070128
+	for kmandar; Sun, 15 Dec 2024 23:19:32 -0700
+From: NM_Service SLURM_workload_manager <slurm@nrao.edu>
+Message-Id: <202412160619.4BG6JWbi2070128@nmpost-serv-2.aoc.nrao.edu>
+Date: Sun, 15 Dec 2024 23:19:32 -0700
+To: kmandar@nrao.edu
+Subject: nmpost Slurm Job_id=385040 Name=spawner-jupyterhub Began, Queued
+ time 00:00:00
+User-Agent: Heirloom mailx 12.5 7/5/10
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 8bit
+X-MIME-Autoconverted: from quoted-printable to 8bit by dropbox.aoc.nrao.edu id 4BG6JXqe032126
+
+
+From slurm@nrao.edu  Sun Dec 15 23:34:22 2024
+Return-Path: <slurm@nrao.edu>
+Received: from revere-vml.aoc.nrao.edu (revere-vml.aoc.nrao.edu [146.88.10.15])
+	by dropbox.aoc.nrao.edu (8.14.4/8.14.4/smtp-gateway) with ESMTP id 4BG6YMgE004314
+	for <kmandar@nmpost-serv-2.aoc.nrao.edu>; Sun, 15 Dec 2024 23:34:22 -0700
+X-Spam-Status: No
+X-MailScanner-From: slurm@nmpost-serv-2.aoc.nrao.edu
+X-yoursite-MailScanner-SpamCheck: not spam, SpamAssassin (not cached,
+	score=-101.898, required 5, autolearn=not spam, BAYES_00 -1.90,
+	NRAO_HEADER_PRESENT -100.00, SPF_HELO_NONE 0.00, SPF_NONE 0.00)
+X-MailScanner: Found to be clean
+X-yoursite-MailScanner-ID: 4BG6YFwJ1886036
+X-MailScanner-Information: Please contact the postmaster@aoc.nrao.edu for more information
+X-NRAO-Sekrit: 3C273
+Received: from nmpost-serv-2.aoc.nrao.edu (nmpost-serv-2.aoc.nrao.edu [10.64.10.98])
+	by revere-vml.aoc.nrao.edu (8.15.2/8.15.2/cv-ws-8.12) with ESMTPS id 4BG6YFwJ1886036
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NO)
+	for <kmandar@nmpost-serv-2.aoc.nrao.edu>; Sun, 15 Dec 2024 23:34:16 -0700
+Received: (from slurm@localhost)
+	by nmpost-serv-2.aoc.nrao.edu (8.15.2/8.15.2/Submit) id 4BG6YFGr2073663
+	for kmandar; Sun, 15 Dec 2024 23:34:15 -0700
+From: NM_Service SLURM_workload_manager <slurm@nrao.edu>
+Message-Id: <202412160634.4BG6YFGr2073663@nmpost-serv-2.aoc.nrao.edu>
+Date: Sun, 15 Dec 2024 23:34:15 -0700
+To: kmandar@nrao.edu
+Subject: nmpost Slurm Job_id=385040 Name=spawner-jupyterhub Ended, Run
+ time 00:14:39, CANCELLED, ExitCode 0
+User-Agent: Heirloom mailx 12.5 7/5/10
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+
+JobID: 385040
+JobName: spawner-jupyterhub
+NodeList: herapost011
+State: CANCELLED by 10045
+ExitCode: 0:0
+AllocCPUS: 1
+TotalCPU: 00:04.421
+Elapsed: 00:14:39
+ReqMem: 30G
+MaxRSS: 0.00G
+MaxVMSize: 0.00G
+WorkDir: /users/kmandar
+
+From slurm@nrao.edu  Sun Dec 15 23:49:07 2024
+Return-Path: <slurm@nrao.edu>
+Received: from revere-vml.aoc.nrao.edu (revere-vml.aoc.nrao.edu [146.88.10.15])
+	by dropbox.aoc.nrao.edu (8.14.4/8.14.4/smtp-gateway) with ESMTP id 4BG6n7cZ007644
+	for <kmandar@nmpost-serv-2.aoc.nrao.edu>; Sun, 15 Dec 2024 23:49:07 -0700
+X-Spam-Status: No
+X-MailScanner-From: slurm@nmpost-serv-2.aoc.nrao.edu
+X-yoursite-MailScanner-SpamCheck: not spam, SpamAssassin (cached,
+	score=-99.577, required 5, autolearn=not spam, BAYES_00 -1.90,
+	EMPTY_MESSAGE 2.32, NRAO_HEADER_PRESENT -100.00, SPF_HELO_NONE 0.00,
+	SPF_NONE 0.00, TVD_SPACE_RATIO 0.00)
+X-MailScanner: Found to be clean
+X-yoursite-MailScanner-ID: 4BG6n4G91887586
+X-MailScanner-Information: Please contact the postmaster@aoc.nrao.edu for more information
+X-NRAO-Sekrit: 3C273
+Received: from nmpost-serv-2.aoc.nrao.edu (nmpost-serv-2.aoc.nrao.edu [10.64.10.98])
+	by revere-vml.aoc.nrao.edu (8.15.2/8.15.2/cv-ws-8.12) with ESMTPS id 4BG6n4G91887586
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NO)
+	for <kmandar@nmpost-serv-2.aoc.nrao.edu>; Sun, 15 Dec 2024 23:49:04 -0700
+Received: (from slurm@localhost)
+	by nmpost-serv-2.aoc.nrao.edu (8.15.2/8.15.2/Submit) id 4BG6n44q2077205
+	for kmandar; Sun, 15 Dec 2024 23:49:04 -0700
+From: NM_Service SLURM_workload_manager <slurm@nrao.edu>
+Message-Id: <202412160649.4BG6n44q2077205@nmpost-serv-2.aoc.nrao.edu>
+Date: Sun, 15 Dec 2024 23:49:04 -0700
+To: kmandar@nrao.edu
+Subject: nmpost Slurm Job_id=385042 Name=spawner-jupyterhub Began, Queued
+ time 00:00:00
+User-Agent: Heirloom mailx 12.5 7/5/10
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 8bit
+X-MIME-Autoconverted: from quoted-printable to 8bit by dropbox.aoc.nrao.edu id 4BG6n7cZ007644
+
+
+From kmandar@nrao.edu  Mon Dec 16 01:20:28 2024
+Return-Path: <kmandar@nrao.edu>
+Received: from revere-vml.aoc.nrao.edu (revere-vml.aoc.nrao.edu [146.88.10.15])
+	by dropbox.aoc.nrao.edu (8.14.4/8.14.4/smtp-gateway) with ESMTP id 4BG8KSvC001706
+	for <kmandar@nrao.edu>; Mon, 16 Dec 2024 01:20:28 -0700
+X-Spam-Status: No
+X-MailScanner-From: kmandar@herapost005.aoc.nrao.edu
+X-yoursite-MailScanner-SpamCheck: not spam, SpamAssassin (not cached,
+	score=-101.898, required 5, autolearn=not spam, BAYES_00 -1.90,
+	NRAO_HEADER_PRESENT -100.00, SPF_HELO_NONE 0.00, SPF_NONE 0.00)
+X-MailScanner: Found to be clean
+X-yoursite-MailScanner-ID: 4BG8KMjY1909998
+X-MailScanner-Information: Please contact the postmaster@aoc.nrao.edu for more information
+X-NRAO-Sekrit: 3C273
+Received: from herapost005.aoc.nrao.edu (herapost005.aoc.nrao.edu [10.64.10.215])
+	by revere-vml.aoc.nrao.edu (8.15.2/8.15.2/cv-ws-8.12) with ESMTPS id 4BG8KMjY1909998
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NO)
+	for <kmandar@nrao.edu>; Mon, 16 Dec 2024 01:20:22 -0700
+Received: (from kmandar@localhost)
+	by herapost005.aoc.nrao.edu (8.15.2/8.15.2/Submit) id 4BG8KMBM516397
+	for kmandar@nrao.edu; Mon, 16 Dec 2024 01:20:22 -0700
+From: Kartik Mandar <kmandar@nrao.edu>
+Message-Id: <202412160820.4BG8KMBM516397@herapost005.aoc.nrao.edu>
+Date: Mon, 16 Dec 2024 01:20:22 -0700
+To: kmandar@nrao.edu
+Subject: Cluster interactive: time begun
+User-Agent: Heirloom mailx 12.5 7/5/10
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+
+Your reserved interactive time has just begun on the following:
+herapost005
+
+You have requested 14 day(s) of time. You will receive
+email messages when your job has seven, three, and one day
+remaining.
+
+If you are finished with this reservation early, and would like
+to terminate your reservation and return these resources so
+others may use them, you can login to nmpost-master and run
+
+  nodescheduler -t 385047
