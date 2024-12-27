@@ -3,6 +3,3 @@
 *.h5 !text !filter !merge !diff
 *.fits !text !filter !merge !diff
 * !text !filter !merge !diff
-RRIviz/src/main.html filter=lfs diff=lfs merge=lfs -text
-skymap.ipynb filter=lfs diff=lfs merge=lfs -text
-RRIviz/src/visibility.h5 filter=lfs diff=lfs merge=lfs -text
