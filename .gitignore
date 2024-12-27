@@ -7,3 +7,6 @@ __pycache__/
 
 # Ignore Jupyter autosave files
 *.~*~
+
+# Ignore simulated data files
+RRIviz/simulation_data/

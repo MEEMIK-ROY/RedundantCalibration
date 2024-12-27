@@ -1,0 +1,8 @@
+time_interval: 120
+time_interval_unit: "seconds"
+antenna_positions_file: "../data/antenna.txt"
+output_file: "complex_visibility.h5"
+plot_skymodel_every_hour: true
+use_gleam: true
+gleam_flux_limit: 40
+save_simulation_data: true

@@ -4,9 +4,11 @@ from bokeh.plotting import figure, show
 from bokeh.palettes import Viridis256, Turbo256
 from bokeh.layouts import column
 from bokeh.models import DatetimeTicker, HoverTool, Legend
-
+from bokeh.io import output_file, save, reset_output
 import matplotlib.pyplot as plt
 import numpy as np
+import os
+from bokeh.resources import CDN
 from astropy.coordinates import EarthLocation
 from astropy.time import Time, TimeDelta
 
@@ -19,6 +21,8 @@ def plot_visibility(
     freqs,
     total_seconds,
     plotting="bokeh",
+    save_simulation_data=False,
+    folder_path=None,
 ):
     """
     Create plots of the modulus and phase of visibility versus time for each baseline.
@@ -268,8 +272,18 @@ def plot_visibility(
 
         plots.append(combined_mod)
         plots.append(combined_phase)
+        
 
-        return column(*plots, sizing_mode="stretch_both")
+        # Combine plots into a column
+        plot_column = column(*plots)
+
+        # Save the entire column if required
+        if save_simulation_data and folder_path:
+            file_path = os.path.join(folder_path, "visibility-phase-lsts.html")
+            save(plot_column, filename=file_path, resources=CDN, title="Visibility/Phase Plots")
+            print(f"Saved visibility plots column to {file_path}")
+
+        return plot_column
 
     else:
         return None
@@ -357,6 +371,8 @@ def plot_heatmaps(
     total_seconds,
     mjd_time_points, 
     plotting="bokeh",
+    save_simulation_data=False,
+    folder_path=None,
 ):
     """
     Create heatmaps for visibility modulus and phase over time and frequency.
@@ -443,8 +459,16 @@ def plot_heatmaps(
             plots.append(p_mod)
             plots.append(p_phase)
             
+        # Combine plots into a column
+        plot_column = column(*plots, sizing_mode="stretch_both")
 
-        return column(*plots, sizing_mode="stretch_both")
+        # Save the entire column if required
+        if save_simulation_data and folder_path:
+            file_path = os.path.join(folder_path, "heatmaps-freq-time.html")
+            save(plot_column, filename=file_path, resources=CDN, title="Visibility Heatmaps")
+            print(f"Saved heatmaps column to {file_path}")
+
+        return plot_column
 
     else:
         return None
@@ -499,7 +523,8 @@ def plot_heatmaps(
 
 
 def plot_modulus_vs_frequency(
-    moduli_over_time, phases_over_time, baselines, freqs, time_index, plotting="bokeh"
+    moduli_over_time, phases_over_time, baselines, freqs, time_index, plotting="bokeh",    save_simulation_data=False,
+    folder_path=None,
 ):
     """
     Create plots of the modulus of visibility versus frequency at a specific time point.
@@ -647,8 +672,16 @@ def plot_modulus_vs_frequency(
 
         plots.append(combined_mod)
         plots.append(combined_phase)
+        
+        plot_column = column(*plots, sizing_mode="stretch_both")
 
-        return column(*plots, sizing_mode="stretch_both")
+        # Save the entire column if required
+        if save_simulation_data and folder_path:
+            file_path = os.path.join(folder_path, "modulus-phase-freq.html")
+            save(plot_column, filename=file_path, resources=CDN, title="Visibility Modulus/Phase vs Frequency")
+            print(f"Saved Modulus vs Frequency column to {file_path}")
+
+        return plot_column
 
     else:
         return None
