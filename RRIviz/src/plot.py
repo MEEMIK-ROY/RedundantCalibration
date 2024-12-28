@@ -543,10 +543,17 @@ def plot_modulus_vs_frequency(
     baseline_keys = list(baselines.keys())
     colors = Turbo256
 
+
+   # Find the time index of maximum modulus for each baseline
+    max_time_indices = {
+        key: np.argmax(moduli_over_time[key].max(axis=1)) for key in baseline_keys
+    }
+    
+    
     if plotting == "bokeh":
         plots = []
         for key in baseline_keys:
-            
+            max_time_index = max_time_indices[key]
             # Modulus
             # if moduli_over_time[key].shape[-1] == 2:
             #     # Combine Ex and Ey components at the specified time index
@@ -555,12 +562,12 @@ def plot_modulus_vs_frequency(
             #         + moduli_over_time[key][time_index, :, 1] ** 2
             #     )
             # else:
-            moduli_total = moduli_over_time[key][time_index, :]
+            moduli_total = moduli_over_time[key][max_time_index, :]
 
             p_mod = figure(
                 width=800,
                 height=300,
-                title=f"Modulus of Visibility vs Frequency for Baseline {key} at Time {time_index} seconds",
+                title=f"Modulus of Visibility vs Frequency for Baseline {key} at Max Modulus Time Index {max_time_index}",
             )
             p_mod.line(
                 freqs / 1e6, moduli_total, line_width=2, legend_label=f"Baseline {key}"
@@ -570,11 +577,11 @@ def plot_modulus_vs_frequency(
             p_mod.legend.location = "top_left"
             
             # Phase
-            phases_total = np.unwrap(phases_over_time[key][time_index, :])
+            phases_total = np.unwrap(phases_over_time[key][max_time_index, :])
             p_phase = figure(
                 width=800,
                 height=300,
-                title=f"Phase of Visibility vs Frequency for Baseline {key} at Time Index {time_index}",
+                title=f"Phase of Visibility vs Frequency for Baseline {key} at Max Modulus Time Index {max_time_index}",
             )
             p_phase.line(
                 freqs / 1e6, phases_total, line_width=2, legend_label=f"Baseline {key}"
@@ -595,10 +602,11 @@ def plot_modulus_vs_frequency(
 
         lines = []
         for idx, key in enumerate(baseline_keys):
+            max_time_index = max_time_indices[key]
             color = colors[int((idx / len(baseline_keys)) * 255)]
             line = combined_mod.line(
                 freqs / 1e6,
-                moduli_over_time[key][time_index, :],
+                moduli_over_time[key][max_time_index, :],
                 line_width=2,
                 color=color,
                 name=str(key),
@@ -637,10 +645,11 @@ def plot_modulus_vs_frequency(
 
         lines = []
         for idx, key in enumerate(baseline_keys):
+            max_time_index = max_time_indices[key]
             color = colors[int((idx / len(baseline_keys)) * 255)]
             line = combined_phase.line(
                 freqs / 1e6,
-                np.unwrap(phases_over_time[key][time_index, :]),
+                np.unwrap(phases_over_time[key][max_time_index, :]),
                 line_width=2,
                 color=color,
                 name=str(key),

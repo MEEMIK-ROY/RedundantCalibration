@@ -27,8 +27,6 @@ test_sources = [
     },
 ]
 
-sp_index = 0  # Spectral index for both models
-
 
 # GLEAM catalog loading function
 def load_gleam_catalog(flux_limit=1.0):
@@ -61,7 +59,7 @@ def load_gleam_catalog(flux_limit=1.0):
             coords = SkyCoord(ra=ra, dec=dec)
 
             # Retrieve the spectral index from the 'Alpha' column
-            if "Alpha" in row.colnames and np.isfinite(row["Alpha"]):
+            if "alpha" in row.colnames and isinstance(row["alpha"], (float, np.float32, np.float64)) and np.isfinite(row["alpha"]):
                 spectral_index = row["alpha"]
             else:
                 spectral_index = 0.0  # Assign a default value if missing
