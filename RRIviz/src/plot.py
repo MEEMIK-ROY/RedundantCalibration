@@ -555,7 +555,7 @@ def plot_modulus_vs_frequency(
             #         + moduli_over_time[key][time_index, :, 1] ** 2
             #     )
             # else:
-            moduli_total = np.mean(moduli_over_time[key][time_index, :])
+            moduli_total = moduli_over_time[key][time_index, :]
 
             p_mod = figure(
                 width=800,

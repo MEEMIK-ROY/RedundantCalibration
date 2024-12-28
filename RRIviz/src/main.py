@@ -19,6 +19,8 @@ import matplotlib.pyplot as plt
 from bokeh.io import show, output_file, save, reset_output
 import h5py
 from datetime import datetime
+import sys
+import logging
 
 # Custom module imports
 from antenna import generate_antennas, read_antenna_positions
@@ -104,6 +106,37 @@ def save_yaml_config(config, folder_path):
     print(f"Configuration saved to {yaml_file_path}")
 
 
+def setup_logging(simulation_folder_path):
+    """
+    Set up logging to log both to a file and the console.
+    """
+    log_file = os.path.join(simulation_folder_path, "simulation.log")
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s - %(levelname)s - %(message)s",
+        handlers=[
+            logging.FileHandler(log_file),  # Log to file
+            logging.StreamHandler(sys.stdout),  # Log to console
+        ]
+    )
+    return log_file
+
+class LoggerWriter:
+    """
+    Redirect `print` statements to the logger.
+    """
+    def __init__(self, level):
+        self.level = level
+        self.buffer = ""
+
+    def write(self, message):
+        if message != "\n":  # Avoid empty lines
+            self.level(message.strip())
+
+    def flush(self):
+        pass  
+
+
 def main():
     """
     Main function for the simulator. Parses arguments, initializes parameters,
@@ -117,6 +150,12 @@ def main():
     if config["save_simulation_data"]:
         simulation_folder_path = create_simulation_folder(config)
         save_yaml_config(config, simulation_folder_path)
+        
+        log_file = setup_logging(simulation_folder_path)
+        print(f"Logging to {log_file}")
+        
+        sys.stdout = LoggerWriter(logging.info)
+        sys.stderr = LoggerWriter(logging.error)
     
     # # Parse command-line arguments
     # parser = argparse.ArgumentParser(
@@ -265,10 +304,9 @@ def main():
 
     # Input validation
     if config["num_antennas"] < 2:
-        parser.error("Number of antennas must be at least 2.")
-
+        raise ValueError("Number of antennas must be at least 2.")
     if config["spacing"] <= 0:
-        parser.error("Spacing between antennas must be a positive number.")
+        raise ValueError("Spacing between antennas must be a positive number.")
 
     # Generate antennas
     if config.get("antenna_positions_file"):

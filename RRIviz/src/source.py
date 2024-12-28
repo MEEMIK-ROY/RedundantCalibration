@@ -13,17 +13,17 @@ test_sources = [
     {
         "coords": SkyCoord(ra=0 * u.deg, dec=-30.72152777777791 * u.deg),
         "flux": 2,
-        "spectral_index": 0,
+        "spectral_index": -0.8,
     },
     {
         "coords": SkyCoord(ra=120 * u.deg, dec=-30.72152777777791 * u.deg),
         "flux": 4,
-        "spectral_index": 0,
+        "spectral_index": -0.8,
     },
     {
         "coords": SkyCoord(ra=240 * u.deg, dec=-30.72152777777791 * u.deg),
         "flux": 6,
-        "spectral_index": 0,
+        "spectral_index": -0.8,
     },
 ]
 
@@ -65,6 +65,8 @@ def load_gleam_catalog(flux_limit=1.0):
                 spectral_index = row["alpha"]
             else:
                 spectral_index = 0.0  # Assign a default value if missing
+                
+            print(f"Source RA: {ra}, Dec: {dec}, Flux: {flux}, Spectral Index: {spectral_index}")
 
             # Append source dictionary to the list
             sources.append(

@@ -47,6 +47,12 @@ def read_antenna_positions(file_path):
         except ValueError:
             raise ValueError(f"Could not parse data in line {i+1}: {line}")
         
+    # Debug output
+    print("Antenna metadata and positions:")
+    for idx, data in antennas.items():
+        print(f"Antenna {idx}: {data}")
+        
+        
     # Calculate total memory usage in MB
     total_memory_bytes = sys.getsizeof(antennas) + sum(
         sys.getsizeof(value) + sum(sys.getsizeof(v) for v in value.values()) 

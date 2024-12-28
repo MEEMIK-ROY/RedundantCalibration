@@ -25,6 +25,13 @@ def generate_baselines(antennas):
             pos1 = antenna_numbers[ant1]
             pos2 = antenna_numbers[ant2]
             baselines[(ant1, ant2)] = pos2 - pos1
+            
+    # Debug output
+    print("Generated baselines:")
+    for key, value in baselines.items():
+        print(f"Baseline {key}: {value}")        
+    
+    
     # Calculate total memory usage in MB
     total_memory_bytes = sys.getsizeof(baselines) + sum(
         sys.getsizeof(key) + sys.getsizeof(value) for key, value in baselines.items()
