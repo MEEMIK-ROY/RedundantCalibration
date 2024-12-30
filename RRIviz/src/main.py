@@ -67,6 +67,10 @@ DEFAULT_CONFIG = {
     "output_file": "complex_visibility.h5",
     "start_time": None,
     "save_simulation_data": False,
+    "start_frequency": 76.0,
+    "frequency_interval": 1e6,
+    "total_frequency_bandwidth": 100,
+    "frequency_unit": "MHz",
 }
 
 def load_config(yaml_file):
@@ -346,10 +350,41 @@ def main():
         frequency=config["skymodel_frequency"] * 1e6 if config["use_gsm"] else None,
         nside=config["nside"] if config["use_gsm"] else None,
     )
+    
+    # Convert frequency inputs to Hz based on the unit
+    unit_conversion = {
+    "Hz": 1,
+    "kHz": 1e3,
+    "MHz": 1e6,
+    "GHz": 1e9,
+    }
+    frequency_unit = config.get("frequency_unit") 
 
-    # Frequency and wavelength setup
-    freqs = np.linspace(1e8, 2e8, 100)  # Frequencies from 100 MHz to 200 MHz
+    if frequency_unit not in unit_conversion:
+        raise ValueError(f"Invalid frequency unit: {frequency_unit}. Must be one of {list(unit_conversion.keys())}.")
+
+    try:
+        # Convert start frequency and bandwidth to Hz based on unit
+        start_frequency = config["start_frequency"] * unit_conversion[frequency_unit]
+        total_frequency_bandwidth = config["total_frequency_bandwidth"] * unit_conversion[frequency_unit]
+
+        # Frequency interval is always in Hz (no conversion needed)
+        frequency_interval = config["frequency_interval"]  # Already in Hz
+    except KeyError as e:
+        raise ValueError(f"Missing required configuration key: {e}")
+
+    # Compute the end frequency and the array of frequencies
+    end_frequency = start_frequency + total_frequency_bandwidth
+    freqs = np.arange(start_frequency, end_frequency, frequency_interval)
     wavelengths = c / freqs
+
+
+    # Debug output
+    print(f"Start Frequency: {start_frequency / 1e6} MHz")
+    print(f"Frequency Interval: {frequency_interval / 1e6} MHz")
+    print(f"Total Bandwidth: {total_frequency_bandwidth / 1e6} MHz")
+    print(f"End Frequency: {end_frequency / 1e6} MHz")
+    print(f"Number of Frequency Channels: {len(freqs)}")
 
     # Convert theta_HPBW from degrees to radians
     theta_HPBW = np.deg2rad(config["theta_HPBW"])
@@ -357,18 +392,23 @@ def main():
     # Convert time_interval to seconds
     if config["time_interval_unit"] == "hours":
         time_interval_seconds = config["time_interval"] * 3600
+        print(f"Time Interval between each observation: {time_interval_seconds} seconds")
     elif config["time_interval_unit"] == "seconds":
         time_interval_seconds = config["time_interval"]
+        print(f"Time Interval between each observation: {time_interval_seconds} seconds")
     else:
         raise ValueError("Invalid time_interval_unit.")
 
     # Convert total_duration to seconds
     if config["total_duration_unit"] == "days":
         total_duration_seconds = config["total_duration"] * 86400
+        print(f"Total duration of the simulation: {total_duration_seconds/86400} days")
     elif config["total_duration_unit"] == "hours":
         total_duration_seconds = config["total_duration"] * 3600
+        print(f"Total duration of the simulation: {total_duration_seconds/86400} days")
     elif config["total_duration_unit"] == "seconds":
         total_duration_seconds = config["total_duration"]
+        print(f"Total duration of the simulation: {total_duration_seconds/86400} days")
     else:
         raise ValueError("Invalid total_duration_unit.")
 

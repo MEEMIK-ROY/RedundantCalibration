@@ -1,9 +1,9 @@
 # src/plot.py
 
 from bokeh.plotting import figure, show
-from bokeh.palettes import Viridis256, Turbo256
+from bokeh.palettes import Viridis256, Turbo256, Inferno256
 from bokeh.layouts import column
-from bokeh.models import DatetimeTicker, HoverTool, Legend
+from bokeh.models import DatetimeTicker, HoverTool, Legend, ColorBar, LinearColorMapper
 from bokeh.io import output_file, save, reset_output
 import matplotlib.pyplot as plt
 import numpy as np
@@ -11,7 +11,6 @@ import os
 from bokeh.resources import CDN
 from astropy.coordinates import EarthLocation
 from astropy.time import Time, TimeDelta
-
 
 def plot_visibility(
     moduli_over_time,
@@ -410,6 +409,10 @@ def plot_heatmaps(
             moduli_total = moduli_over_time[key]
             phases_total = np.unwrap(phases_over_time[key], axis=0)
             
+            
+            # Create a LinearColorMapper for the heatmap
+            modulus_mapper = LinearColorMapper(palette=Inferno256, low=moduli_total.min(), high=moduli_total.max())
+            phase_mapper = LinearColorMapper(palette=Inferno256, low=phases_total.min(), high=phases_total.max())
             # Ensure data is in the correct format (list of 2D arrays)
             moduli_image = [moduli_total.T]  # Transpose to match Bokeh's image orientation
             phases_image = [phases_total.T]
@@ -420,7 +423,6 @@ def plot_heatmaps(
                 height=300,
                 title=f"Modulus of Visibility Heatmap for Baseline {key}",
                 x_axis_type="datetime",
-
             )
             p_mod.image(
                 image=moduli_image,
@@ -428,13 +430,17 @@ def plot_heatmaps(
                 y=freqs[0] / 1e6,  # Start of frequency in MHz
                 dw=(time_points_datetime[-1] - time_points_datetime[0]).total_seconds() * 1e3,  # Time duration in ms
                 dh=(freqs[-1] - freqs[0]) / 1e6,  # Frequency range in MHz
-                palette=Viridis256,
+                color_mapper=modulus_mapper,
             )
             p_mod.xaxis.axis_label = "Time"
             p_mod.yaxis.axis_label = "Frequency (MHz)"
             p_mod.xaxis.ticker = DatetimeTicker(desired_num_ticks=12)  # Add finer ticks
 
-
+            # Add color bar for modulus heatmap
+            color_bar_mod = ColorBar(color_mapper=modulus_mapper, location=(0, 0))
+            p_mod.add_layout(color_bar_mod, "right")
+            
+            
             # Phase heatmap
             p_phase = figure(
                 width=800,
@@ -449,13 +455,17 @@ def plot_heatmaps(
                 y=freqs[0] / 1e6,  # Start of frequency in MHz
                 dw=(time_points_datetime[-1] - time_points_datetime[0]).total_seconds() * 1e3,  # Time duration in ms
                 dh=(freqs[-1] - freqs[0]) / 1e6,  # Frequency range in MHz
-                palette=Viridis256,
+                color_mapper=phase_mapper,
             )
             p_phase.xaxis.axis_label = "Time"
             p_phase.yaxis.axis_label = "Frequency (MHz)"
             p_phase.xaxis.ticker = DatetimeTicker(desired_num_ticks=12)  # Add finer ticks
 
-
+            # Add color bar for phase heatmap
+            color_bar_phase = ColorBar(color_mapper=phase_mapper, location=(0, 0))
+            p_phase.add_layout(color_bar_phase, "right")
+            
+            
             plots.append(p_mod)
             plots.append(p_phase)
             

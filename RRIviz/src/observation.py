@@ -34,4 +34,10 @@ def get_location_and_time(lat=None, lon=None, height=None, starttime=None):
     else:
         obstime_start = Time(starttime, format="isot", scale="utc")
 
+
+    # Debug output
+    print(f"Observation Location: Latitude={lat}, Longitude={lon}, Height={height} meters")
+    print(f"Observation Start Time: {obstime_start.isot}")
+    
+    
     return location, obstime_start

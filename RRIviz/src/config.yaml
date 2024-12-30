@@ -4,4 +4,12 @@ antenna_positions_file: "../data/antenna.txt"
 output_file: "complex_visibility.h5"
 plot_skymodel_every_hour: true
 use_gleam: false
+use_gsm: true
+gsm_flux_limit: 7000
 save_simulation_data: true
+total_duration_unit: "days"
+total_duration: 1
+start_frequency: 76.0
+frequency_interval: 1000000
+total_frequency_bandwidth: 300
+frequency_unit: "MHz"
