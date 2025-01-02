@@ -12,6 +12,7 @@ from bokeh.resources import CDN
 from astropy.coordinates import EarthLocation
 from astropy.time import Time, TimeDelta
 
+
 def plot_visibility(
     moduli_over_time,
     phases_over_time,
@@ -38,7 +39,7 @@ def plot_visibility(
     Returns:
     Figure object: The generated plot figure(s) based on the specified plotting library.
     """
-    
+
     # Convert MJD to human-readable datetime
     time_points_datetime = Time(mjd_time_points, format="mjd").to_datetime()
 
@@ -116,10 +117,11 @@ def plot_visibility(
 
             #     plots.extend([p_mod_ex, p_mod_ey, p_phase_ex, p_phase_ey])
             # else:
-            
-            
+
             # Define a ticker with finer granularity (e.g., hourly ticks)
-            datetime_ticker = DatetimeTicker(desired_num_ticks=12)  # Adjust `desired_num_ticks` as needed
+            datetime_ticker = DatetimeTicker(
+                desired_num_ticks=12
+            )  # Adjust `desired_num_ticks` as needed
 
             # No polarization, single component
             p_mod = figure(
@@ -139,7 +141,6 @@ def plot_visibility(
             p_mod.legend.location = "top_left"
             p_mod.xaxis.ticker = datetime_ticker
 
-
             p_phase = figure(
                 width=800,
                 height=300,
@@ -157,10 +158,9 @@ def plot_visibility(
             p_phase.legend.location = "top_left"
             p_phase.xaxis.ticker = datetime_ticker
 
-
             plots.append(p_mod)
             plots.append(p_phase)
-            
+
         combined_mod = figure(
             width=1400,
             height=1400,
@@ -213,7 +213,6 @@ def plot_visibility(
         # combined_mod.legend.click_policy = "hide"  # Allow toggling baselines on/off
         # combined_mod.xaxis.ticker = DatetimeTicker(desired_num_ticks=12)
 
-
         # Combined Phase vs Time
         combined_phase = figure(
             width=1400,
@@ -239,11 +238,11 @@ def plot_visibility(
                 renderers=[line],
                 tooltips=[
                     ("Time", "@x{%F %T}"),  # Time in human-readable format
-                    ("Value", "@y"),        # Value (phase)
-                    ("Baseline", str(key)), # Convert key to string for tooltip
+                    ("Value", "@y"),  # Value (phase)
+                    ("Baseline", str(key)),  # Convert key to string for tooltip
                 ],
                 formatters={"@x": "datetime"},  # Formatter for time
-                mode="mouse",  
+                mode="mouse",
             )
             combined_phase.add_tools(hover)
 
@@ -262,16 +261,14 @@ def plot_visibility(
             click_policy="hide",  # Allow clicking to hide/show lines
             title="Baselines",
         )
-        
+
         legend.ncols = 10
-        
+
         # Restrict legend height to make it scrollable
         combined_phase.add_layout(legend, "below")
 
-
         plots.append(combined_mod)
         plots.append(combined_phase)
-        
 
         # Combine plots into a column
         plot_column = column(*plots)
@@ -279,7 +276,12 @@ def plot_visibility(
         # Save the entire column if required
         if save_simulation_data and folder_path:
             file_path = os.path.join(folder_path, "visibility-phase-lsts.html")
-            save(plot_column, filename=file_path, resources=CDN, title="Visibility/Phase Plots")
+            save(
+                plot_column,
+                filename=file_path,
+                resources=CDN,
+                title="Visibility/Phase Plots",
+            )
             print(f"Saved visibility plots column to {file_path}")
 
         return plot_column
@@ -368,7 +370,7 @@ def plot_heatmaps(
     baselines,
     freqs,
     total_seconds,
-    mjd_time_points, 
+    mjd_time_points,
     plotting="bokeh",
     save_simulation_data=False,
     folder_path=None,
@@ -387,7 +389,7 @@ def plot_heatmaps(
     Returns:
     Figure object: The generated heatmap figure(s) based on the specified plotting library.
     """
-    
+
     # Convert MJD to human-readable datetime
     time_points_datetime = Time(mjd_time_points, format="mjd").to_datetime()
     baseline_keys = list(baselines.keys())
@@ -408,13 +410,18 @@ def plot_heatmaps(
             # else:
             moduli_total = moduli_over_time[key]
             phases_total = np.unwrap(phases_over_time[key], axis=0)
-            
-            
+
             # Create a LinearColorMapper for the heatmap
-            modulus_mapper = LinearColorMapper(palette=Inferno256, low=moduli_total.min(), high=moduli_total.max())
-            phase_mapper = LinearColorMapper(palette=Inferno256, low=phases_total.min(), high=phases_total.max())
+            modulus_mapper = LinearColorMapper(
+                palette=Inferno256, low=moduli_total.min(), high=moduli_total.max()
+            )
+            phase_mapper = LinearColorMapper(
+                palette=Inferno256, low=phases_total.min(), high=phases_total.max()
+            )
             # Ensure data is in the correct format (list of 2D arrays)
-            moduli_image = [moduli_total.T]  # Transpose to match Bokeh's image orientation
+            moduli_image = [
+                moduli_total.T
+            ]  # Transpose to match Bokeh's image orientation
             phases_image = [phases_total.T]
 
             # Modulus heatmap
@@ -428,7 +435,8 @@ def plot_heatmaps(
                 image=moduli_image,
                 x=time_points_datetime[0],  # Start of the datetime range
                 y=freqs[0] / 1e6,  # Start of frequency in MHz
-                dw=(time_points_datetime[-1] - time_points_datetime[0]).total_seconds() * 1e3,  # Time duration in ms
+                dw=(time_points_datetime[-1] - time_points_datetime[0]).total_seconds()
+                * 1e3,  # Time duration in ms
                 dh=(freqs[-1] - freqs[0]) / 1e6,  # Frequency range in MHz
                 color_mapper=modulus_mapper,
             )
@@ -439,43 +447,48 @@ def plot_heatmaps(
             # Add color bar for modulus heatmap
             color_bar_mod = ColorBar(color_mapper=modulus_mapper, location=(0, 0))
             p_mod.add_layout(color_bar_mod, "right")
-            
-            
+
             # Phase heatmap
             p_phase = figure(
                 width=800,
                 height=300,
                 title=f"Phase of Visibility Heatmap for Baseline {key}",
                 x_axis_type="datetime",
-
             )
             p_phase.image(
                 image=phases_image,
                 x=time_points_datetime[0],  # Start of the datetime range
                 y=freqs[0] / 1e6,  # Start of frequency in MHz
-                dw=(time_points_datetime[-1] - time_points_datetime[0]).total_seconds() * 1e3,  # Time duration in ms
+                dw=(time_points_datetime[-1] - time_points_datetime[0]).total_seconds()
+                * 1e3,  # Time duration in ms
                 dh=(freqs[-1] - freqs[0]) / 1e6,  # Frequency range in MHz
                 color_mapper=phase_mapper,
             )
             p_phase.xaxis.axis_label = "Time"
             p_phase.yaxis.axis_label = "Frequency (MHz)"
-            p_phase.xaxis.ticker = DatetimeTicker(desired_num_ticks=12)  # Add finer ticks
+            p_phase.xaxis.ticker = DatetimeTicker(
+                desired_num_ticks=12
+            )  # Add finer ticks
 
             # Add color bar for phase heatmap
             color_bar_phase = ColorBar(color_mapper=phase_mapper, location=(0, 0))
             p_phase.add_layout(color_bar_phase, "right")
-            
-            
+
             plots.append(p_mod)
             plots.append(p_phase)
-            
+
         # Combine plots into a column
         plot_column = column(*plots, sizing_mode="stretch_both")
 
         # Save the entire column if required
         if save_simulation_data and folder_path:
             file_path = os.path.join(folder_path, "heatmaps-freq-time.html")
-            save(plot_column, filename=file_path, resources=CDN, title="Visibility Heatmaps")
+            save(
+                plot_column,
+                filename=file_path,
+                resources=CDN,
+                title="Visibility Heatmaps",
+            )
             print(f"Saved heatmaps column to {file_path}")
 
         return plot_column
@@ -531,9 +544,14 @@ def plot_heatmaps(
         # return fig2
 
 
-
 def plot_modulus_vs_frequency(
-    moduli_over_time, phases_over_time, baselines, freqs, time_index, plotting="bokeh",    save_simulation_data=False,
+    moduli_over_time,
+    phases_over_time,
+    baselines,
+    freqs,
+    mjd_time_points,
+    plotting="bokeh",
+    save_simulation_data=False,
     folder_path=None,
 ):
     """
@@ -553,17 +571,19 @@ def plot_modulus_vs_frequency(
     baseline_keys = list(baselines.keys())
     colors = Turbo256
 
+    # Convert MJD to human-readable datetime
+    time_points_datetime = Time(mjd_time_points, format="mjd").to_datetime()
 
-   # Find the time index of maximum modulus for each baseline
+    # Find the time index of maximum modulus for each baseline
     max_time_indices = {
         key: np.argmax(moduli_over_time[key].max(axis=1)) for key in baseline_keys
     }
-    
-    
+
     if plotting == "bokeh":
         plots = []
         for key in baseline_keys:
             max_time_index = max_time_indices[key]
+            max_time_utc = time_points_datetime[max_time_index]
             # Modulus
             # if moduli_over_time[key].shape[-1] == 2:
             #     # Combine Ex and Ey components at the specified time index
@@ -577,7 +597,7 @@ def plot_modulus_vs_frequency(
             p_mod = figure(
                 width=800,
                 height=300,
-                title=f"Modulus of Visibility vs Frequency for Baseline {key} at Max Modulus Time Index {max_time_index}",
+                title=f"Modulus of Visibility vs Frequency for Baseline {key} at {max_time_utc}",
             )
             p_mod.line(
                 freqs / 1e6, moduli_total, line_width=2, legend_label=f"Baseline {key}"
@@ -585,13 +605,13 @@ def plot_modulus_vs_frequency(
             p_mod.xaxis.axis_label = "Frequency (MHz)"
             p_mod.yaxis.axis_label = "Modulus of Visibility"
             p_mod.legend.location = "top_left"
-            
+
             # Phase
             phases_total = np.unwrap(phases_over_time[key][max_time_index, :])
             p_phase = figure(
                 width=800,
                 height=300,
-                title=f"Phase of Visibility vs Frequency for Baseline {key} at Max Modulus Time Index {max_time_index}",
+                title=f"Phase of Visibility vs Frequency for Baseline {key} at {max_time_utc}",
             )
             p_phase.line(
                 freqs / 1e6, phases_total, line_width=2, legend_label=f"Baseline {key}"
@@ -602,12 +622,17 @@ def plot_modulus_vs_frequency(
 
             plots.append(p_mod)
             plots.append(p_phase)
-            
-        # Combined Modulus vs Frequency 
+
+        # Find the global maximum modulus time index across all baselines
+        global_max_time_index = max(max_time_indices.values())
+        global_max_time_utc = time_points_datetime[global_max_time_index]
+        
+        
+        # Combined Modulus vs Frequency
         combined_mod = figure(
             width=1400,
             height=1400,
-            title="Modulus of Visibility vs Frequency for All Baselines",
+            title=f"Modulus of Visibility vs Frequency for All Baselines at {global_max_time_utc}",
         )
 
         lines = []
@@ -650,7 +675,7 @@ def plot_modulus_vs_frequency(
         combined_phase = figure(
             width=1400,
             height=1400,
-            title="Phase of Visibility vs Frequency for All Baselines",
+            title=f"Phase of Visibility vs Frequency for All Baselines at {global_max_time_utc}",
         )
 
         lines = []
@@ -691,13 +716,18 @@ def plot_modulus_vs_frequency(
 
         plots.append(combined_mod)
         plots.append(combined_phase)
-        
+
         plot_column = column(*plots, sizing_mode="stretch_both")
 
         # Save the entire column if required
         if save_simulation_data and folder_path:
             file_path = os.path.join(folder_path, "modulus-phase-freq.html")
-            save(plot_column, filename=file_path, resources=CDN, title="Visibility Modulus/Phase vs Frequency")
+            save(
+                plot_column,
+                filename=file_path,
+                resources=CDN,
+                title="Visibility Modulus/Phase vs Frequency",
+            )
             print(f"Saved Modulus vs Frequency column to {file_path}")
 
         return plot_column

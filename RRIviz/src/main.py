@@ -50,7 +50,7 @@ DEFAULT_CONFIG = {
     "use_gsm": False,
     "gsm_flux_limit": 1.0,
     "nside": 32,
-    "use_gleam": True,
+    "use_gleam": False,
     "gleam_flux_limit": 1.0,
     "plotting": "bokeh",
     "use_polarization": False,
@@ -73,11 +73,12 @@ DEFAULT_CONFIG = {
     "frequency_unit": "MHz",
 }
 
+
 def load_config(yaml_file):
     """
     Load configuration from YAML and merge with default values.
     """
-    with open(yaml_file, 'r') as f:
+    with open(yaml_file, "r") as f:
         user_config = yaml.safe_load(f)
     # Merge user-config with defaults
     config = DEFAULT_CONFIG.copy()
@@ -87,7 +88,7 @@ def load_config(yaml_file):
 
 def create_simulation_folder(config):
     """
-    Create a simulation folder inside the existing simulation_data directory 
+    Create a simulation folder inside the existing simulation_data directory
     based on the current UTC date and time.
     """
     if config["save_simulation_data"]:
@@ -121,14 +122,16 @@ def setup_logging(simulation_folder_path):
         handlers=[
             logging.FileHandler(log_file),  # Log to file
             logging.StreamHandler(sys.stdout),  # Log to console
-        ]
+        ],
     )
     return log_file
+
 
 class LoggerWriter:
     """
     Redirect `print` statements to the logger.
     """
+
     def __init__(self, level):
         self.level = level
         self.buffer = ""
@@ -138,7 +141,7 @@ class LoggerWriter:
             self.level(message.strip())
 
     def flush(self):
-        pass  
+        pass
 
 
 def main():
@@ -146,21 +149,20 @@ def main():
     Main function for the simulator. Parses arguments, initializes parameters,
     computes visibilities, and generates visualizations.
     """
-    
-    
+
     yaml_file = "./config.yaml"
     config = load_config(yaml_file)
-    
+
     if config["save_simulation_data"]:
         simulation_folder_path = create_simulation_folder(config)
         save_yaml_config(config, simulation_folder_path)
-        
+
         log_file = setup_logging(simulation_folder_path)
         print(f"Logging to {log_file}")
-        
+
         sys.stdout = LoggerWriter(logging.info)
         sys.stderr = LoggerWriter(logging.error)
-    
+
     # # Parse command-line arguments
     # parser = argparse.ArgumentParser(
     #     description="Radio Astronomy Visibility Simulation"
@@ -305,7 +307,6 @@ def main():
 
     # args = parser.parse_args()
 
-
     # Input validation
     if config["num_antennas"] < 2:
         raise ValueError("Number of antennas must be at least 2.")
@@ -326,7 +327,12 @@ def main():
     baselines = generate_baselines(antennas)
 
     # Get observation location and start time
-    location, obstime_start = get_location_and_time(config.get("lat"), config.get("lon"), config.get("height"), config.get('start_time'))
+    location, obstime_start = get_location_and_time(
+        config.get("lat"),
+        config.get("lon"),
+        config.get("height"),
+        config.get("start_time"),
+    )
 
     # Lists to store sky model plotting functions and figures
     sky_model_plots = []
@@ -350,23 +356,27 @@ def main():
         frequency=config["skymodel_frequency"] * 1e6 if config["use_gsm"] else None,
         nside=config["nside"] if config["use_gsm"] else None,
     )
-    
+
     # Convert frequency inputs to Hz based on the unit
     unit_conversion = {
-    "Hz": 1,
-    "kHz": 1e3,
-    "MHz": 1e6,
-    "GHz": 1e9,
+        "Hz": 1,
+        "kHz": 1e3,
+        "MHz": 1e6,
+        "GHz": 1e9,
     }
-    frequency_unit = config.get("frequency_unit") 
+    frequency_unit = config.get("frequency_unit")
 
     if frequency_unit not in unit_conversion:
-        raise ValueError(f"Invalid frequency unit: {frequency_unit}. Must be one of {list(unit_conversion.keys())}.")
+        raise ValueError(
+            f"Invalid frequency unit: {frequency_unit}. Must be one of {list(unit_conversion.keys())}."
+        )
 
     try:
         # Convert start frequency and bandwidth to Hz based on unit
         start_frequency = config["start_frequency"] * unit_conversion[frequency_unit]
-        total_frequency_bandwidth = config["total_frequency_bandwidth"] * unit_conversion[frequency_unit]
+        total_frequency_bandwidth = (
+            config["total_frequency_bandwidth"] * unit_conversion[frequency_unit]
+        )
 
         # Frequency interval is always in Hz (no conversion needed)
         frequency_interval = config["frequency_interval"]  # Already in Hz
@@ -377,7 +387,6 @@ def main():
     end_frequency = start_frequency + total_frequency_bandwidth
     freqs = np.arange(start_frequency, end_frequency, frequency_interval)
     wavelengths = c / freqs
-
 
     # Debug output
     print(f"Start Frequency: {start_frequency / 1e6} MHz")
@@ -392,10 +401,14 @@ def main():
     # Convert time_interval to seconds
     if config["time_interval_unit"] == "hours":
         time_interval_seconds = config["time_interval"] * 3600
-        print(f"Time Interval between each observation: {time_interval_seconds} seconds")
+        print(
+            f"Time Interval between each observation: {time_interval_seconds} seconds"
+        )
     elif config["time_interval_unit"] == "seconds":
         time_interval_seconds = config["time_interval"]
-        print(f"Time Interval between each observation: {time_interval_seconds} seconds")
+        print(
+            f"Time Interval between each observation: {time_interval_seconds} seconds"
+        )
     else:
         raise ValueError("Invalid time_interval_unit.")
 
@@ -446,7 +459,6 @@ def main():
     # Initialize dictionaries to store complex visibility over time for each baseline
     visibilities = {key: [] for key in baselines.keys()}
 
-    
     # Loop over time points to calculate visibility
     for idx, current_time in enumerate(time_points):
         # Update observation time
@@ -467,7 +479,6 @@ def main():
         # Append visibility data for each baseline
         for key in baselines.keys():
             visibilities[key].append(visibility_dict[key])
-
 
         # # Calculate modulus and phase of visibility
         moduli, phases = calculate_modulus_phase(visibility_dict)
@@ -531,8 +542,6 @@ def main():
     # ## also save the number of point sources
     # print(f"Simulation data saved to {args.output_file}")
 
-
-
     # Plot the gsm2008 map along with gleam sources
     if config["plot_skymodel_every_hour"]:
         diffused_sky_model(
@@ -542,8 +551,8 @@ def main():
             frequency=config["skymodel_frequency"],
             fov_radius_deg=config["fov_radius_deg"],
             gleam_sources=sources if config["use_gleam"] else None,
-            save_simulation_data = config["save_simulation_data"],
-            folder_path = simulation_folder_path
+            save_simulation_data=config["save_simulation_data"],
+            folder_path=simulation_folder_path,
         )
     # Save computed data to an HDF5 file if output_file argument is provided
     if config["output_file"]:
@@ -614,7 +623,6 @@ def main():
         plotting=config["plotting"],
         save_simulation_data=config["save_simulation_data"],
         folder_path=simulation_folder_path,
-        
     )
     fig2 = plot_heatmaps(
         moduli_over_time,
@@ -628,7 +636,13 @@ def main():
         folder_path=simulation_folder_path,
     )
     fig3 = plot_modulus_vs_frequency(
-        moduli_over_time, phases_over_time, baselines, freqs, 0, plotting=config["plotting"], save_simulation_data=config["save_simulation_data"],
+        moduli_over_time,
+        phases_over_time,
+        baselines,
+        freqs,
+        mjd_time_points,
+        plotting=config["plotting"],
+        save_simulation_data=config["save_simulation_data"],
         folder_path=simulation_folder_path,
     )
 

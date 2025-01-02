@@ -7,7 +7,13 @@ from astropy.time import Time, TimeDelta
 import astropy.units as u
 from datetime import datetime, timedelta
 from bokeh.plotting import figure, show
-from bokeh.models import ColorBar, LogColorMapper, FixedTicker, HoverTool, ColumnDataSource
+from bokeh.models import (
+    ColorBar,
+    LogColorMapper,
+    FixedTicker,
+    HoverTool,
+    ColumnDataSource,
+)
 from bokeh.io import show
 from bokeh.io import output_file, save, reset_output
 from bokeh.layouts import gridplot
@@ -15,7 +21,16 @@ import os
 from bokeh.resources import CDN
 
 
-def diffused_sky_model(location, obstime_start, total_seconds, frequency=76, fov_radius_deg=5, gleam_sources=None, save_simulation_data=False, folder_path=None):
+def diffused_sky_model(
+    location,
+    obstime_start,
+    total_seconds,
+    frequency=76,
+    fov_radius_deg=5,
+    gleam_sources=None,
+    save_simulation_data=False,
+    folder_path=None,
+):
     """
     Generates the Global Sky Model data at a given frequency and time,
     and plots the model at each hour up to the specified total seconds.
@@ -52,22 +67,17 @@ def diffused_sky_model(location, obstime_start, total_seconds, frequency=76, fov
     )
     plt.close()
 
-
-
     # Normalize the map data for visualization
     min_value = np.nanmin(projected_map)
     max_value = np.nanmax(projected_map)
 
-    
     # Set up ranges for RA and Dec
     x_range = (-180, 180)  # RA from -180° to 180°
     y_range = (-90, 90)  # Dec from -90° to 90°
-    
-    
+
     # List to collect all Bokeh plots
     plots = []
-    
-    
+
     # Declination range for HERA
     hera_dec = -30.7
     fov_radius_deg = 5  # Radius of the field of view in degrees
@@ -90,13 +100,12 @@ def diffused_sky_model(location, obstime_start, total_seconds, frequency=76, fov
             alpha=0.7,
             line_width=2,
         )
-        
+
     # Generate the x, y grid
     n_y, n_x = projected_map.shape  # Dimensions of the projected map
     x = np.linspace(-180, 180, n_x)
     y = np.linspace(-90, 90, n_y)
 
-    
     # Define the time points (one per hour)
     time_points = np.arange(0, total_seconds, 3600)  # Every hour up to total_seconds
 
@@ -107,7 +116,9 @@ def diffused_sky_model(location, obstime_start, total_seconds, frequency=76, fov
 
         # Define the observer's zenith
         zenith = SkyCoord(
-            alt=90 * u.deg, az=0 * u.deg, frame=AltAz(obstime=obstime, location=location)
+            alt=90 * u.deg,
+            az=0 * u.deg,
+            frame=AltAz(obstime=obstime, location=location),
         )
         zenith_radec = zenith.transform_to("icrs")
         ra_center = zenith_radec.ra.deg % 360
@@ -121,8 +132,10 @@ def diffused_sky_model(location, obstime_start, total_seconds, frequency=76, fov
         dec_upper = location.lat.deg + fov_radius_deg
         dec_lower = location.lat.deg - fov_radius_deg
 
-        color_mapper = LogColorMapper(palette="Inferno256", low=min_value, high=max_value)
-        
+        color_mapper = LogColorMapper(
+            palette="Inferno256", low=min_value, high=max_value
+        )
+
         # Create the Bokeh figure
         p = figure(
             title=f"Sky Model on {obstime.to_datetime().strftime('%Y-%m-%d %H:%M:%S')}",
@@ -156,10 +169,9 @@ def diffused_sky_model(location, obstime_start, total_seconds, frequency=76, fov
             },
             mode="mouse",
             renderers=[image],
-            attachment="right"
+            attachment="right",
         )
         p.add_tools(hover_tool)
-
 
         # Add declination lines
         add_declination_lines(p)
@@ -173,14 +185,15 @@ def diffused_sky_model(location, obstime_start, total_seconds, frequency=76, fov
             fill_alpha=0.3,
             line_alpha=1.0,
         )
-        
+
         # Add a colorbar
         color_bar = ColorBar(
-            color_mapper=color_mapper, label_standoff=12, border_line_color=None, location=(0, 0)
+            color_mapper=color_mapper,
+            label_standoff=12,
+            border_line_color=None,
+            location=(0, 0),
         )
         p.add_layout(color_bar, "right")
-
-
 
         # Add custom ticks for RA and Dec
         major_ticks_ra = list(range(-180, 181, 30))  # RA ticks every 30 degrees
@@ -189,8 +202,7 @@ def diffused_sky_model(location, obstime_start, total_seconds, frequency=76, fov
         p.yaxis.ticker = FixedTicker(ticks=major_ticks_dec)
         p.xaxis.major_label_overrides = {tick: f"{tick}°" for tick in major_ticks_ra}
         p.yaxis.major_label_overrides = {tick: f"{tick}°" for tick in major_ticks_dec}
-        
-        
+
         # Add GLEAM sources
         if gleam_sources:
             source_data = {
@@ -220,7 +232,7 @@ def diffused_sky_model(location, obstime_start, total_seconds, frequency=76, fov
                 color="#39FF14",
                 alpha=0.8,
             )
-            
+
             # Add hover tool for the sources
             hover_tool_sources = HoverTool(
                 tooltips=[
@@ -230,17 +242,16 @@ def diffused_sky_model(location, obstime_start, total_seconds, frequency=76, fov
                 ],
                 mode="mouse",
                 renderers=[p.renderers[-1]],
-                attachment="left",# Attach hover to the last renderer (circle layer)
+                attachment="left",  # Attach hover to the last renderer (circle layer)
             )
             p.add_tools(hover_tool_sources)
-            
+
         # Collect the plot in the list
         plots.append(p)
 
-
     # Arrange plots in two columns
     grid = gridplot(children=plots, ncols=2)
-    
+
     # Save the grid if required
     if save_simulation_data and folder_path:
         file_path = os.path.join(folder_path, "gsm_plots_grid.html")

@@ -4,21 +4,9 @@ import numpy as np
 import sys
 from astropy.coordinates import AltAz, SkyCoord
 import astropy.units as u
+from beams import calculate_A_theta
 
-
-def calculate_A_theta(theta, theta_HPBW):
-    """
-    Calculate the Gaussian primary beam pattern A(theta).
-
-    Parameters:
-    theta (ndarray): Zenith angles in radians.
-    theta_HPBW (float): Half Power Beam Width (HPBW) in radians.
-
-    Returns:
-    ndarray: The primary beam pattern A(theta) evaluated at theta.
-    """
-    A_theta = np.exp(-((theta / (np.sqrt(2) * theta_HPBW)) ** 2)) ** 2
-    return A_theta
+# The rest of the visibility-related functions
 
 
 ### Optimized Visibility Calculation Function ###

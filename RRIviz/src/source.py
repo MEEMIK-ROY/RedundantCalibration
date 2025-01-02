@@ -112,11 +112,12 @@ def load_gsm2008_sources(frequency=76e6, nside=32, flux_limit=1.0):
     dec = 90 - np.rad2deg(theta)
 
     # Calculate flux density
-    pixel_area = hp.nside2pixarea(nside)  # Solid angle of each pixel
+    total_pixels = hp.nside2pixarea(nside)
+    solid_angle = (4 * np.pi) / total_pixels  # Solid angle of each pixel in steradians
     k_B = 1.380649e-23  # Boltzmann constant in J/K
     c = 3e8  # Speed of light in m/s
     flux_density = (
-        2 * k_B * downgraded_map * (frequency ** 2) / (c ** 2) * pixel_area
+        ((2 * k_B * downgraded_map * (frequency ** 2)) / (c ** 2)) * solid_angle
     )  # Flux density in W/m^2/Hz
 
     # Convert flux density to Jy (1 Jy = 1e-26 W/m^2/Hz)
