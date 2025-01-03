@@ -6,7 +6,7 @@ from astroquery.vizier import Vizier
 from pympler import asizeof
 import numpy as np
 import healpy as hp
-
+from beams import calculate_A_theta
 
 # Test sources (used when not loading GLEAM catalog)
 test_sources = [
@@ -103,8 +103,9 @@ def load_gsm2008_sources(frequency=76e6, nside=32, flux_limit=1.0):
     # Downgrade the map to nside=32
     downgraded_map = hp.ud_grade(sky_map, nside_out=nside)
 
-    # Get pixel indices for nside=32
+    # Get pixel indices for nside
     npix = hp.nside2npix(nside)
+    pix_area = hp.nside2pixarea(nside)
     theta, phi = hp.pix2ang(nside, np.arange(npix))
 
     # Convert to RA/Dec
@@ -115,7 +116,7 @@ def load_gsm2008_sources(frequency=76e6, nside=32, flux_limit=1.0):
     total_pixels = hp.nside2pixarea(nside)
     solid_angle = (4 * np.pi) / total_pixels  # Solid angle of each pixel in steradians
     k_B = 1.380649e-23  # Boltzmann constant in J/K
-    c = 3e8  # Speed of light in m/s
+    c = 299792458  # Speed of light in m/s
     flux_density = (
         ((2 * k_B * downgraded_map * (frequency ** 2)) / (c ** 2)) * solid_angle
     )  # Flux density in W/m^2/Hz

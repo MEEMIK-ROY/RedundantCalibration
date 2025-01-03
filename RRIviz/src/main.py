@@ -48,7 +48,7 @@ DEFAULT_CONFIG = {
     "antenna_positions_file": "",
     "use_non_optimized": False,
     "use_gsm": False,
-    "gsm_flux_limit": 1.0,
+    "gsm_flux_limit": 0.0,
     "nside": 32,
     "use_gleam": False,
     "gleam_flux_limit": 1.0,
