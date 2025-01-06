@@ -6,6 +6,8 @@ from astroquery.vizier import Vizier
 from pympler import asizeof
 import numpy as np
 import healpy as hp
+from healpy.rotator import Rotator
+from pygdsm import GlobalSkyModel
 from beams import calculate_A_theta
 
 # Test sources (used when not loading GLEAM catalog)
@@ -94,23 +96,34 @@ def load_gsm2008_sources(frequency=76e6, nside=32, flux_limit=1.0):
     Returns:
     list: List of sources with "coords", "flux", and "spectral_index" keys.
     """
-    # Generate the GSM model at the specified frequency
-    from pygdsm import GlobalSkyModel
 
-    gsm = GlobalSkyModel(freq_unit="Hz")
-    sky_map = gsm.generate(frequency)
+    gsm = GlobalSkyModel(freq_unit="Hz") # Healpix map in Galactic coordinates with nside=512
+    sky_map = gsm.generate(frequency) 
 
-    # Downgrade the map to nside=32
+    # Create a rotator to transform from Galactic to Equatorial coordinates
+    rot = Rotator(coord=['G', 'C'])
+    
+    # Downgrade the map
     downgraded_map = hp.ud_grade(sky_map, nside_out=nside)
 
+    # Rotate the map to Equatorial coordinates
+    equatorial = rot.rotate_map_pixel(downgraded_map)
+    
+    
     # Get pixel indices for nside
     npix = hp.nside2npix(nside)
-    pix_area = hp.nside2pixarea(nside)
-    theta, phi = hp.pix2ang(nside, np.arange(npix))
+    pixel_indices = np.arange(npix)
+    
+    # Get theta and phi values for each pixel in galactic coordinates
+    theta_gal, phi_gal = hp.pix2ang(nside, pixel_indices)
 
+    # Rotate the pixel to Equatorial coordinates
+    theta_eq, phi_eq = rot(theta_gal, phi_gal)
+    
+    
     # Convert to RA/Dec
-    ra = np.rad2deg(phi)
-    dec = 90 - np.rad2deg(theta)
+    ra = np.rad2deg(phi_eq)
+    dec = 90 - np.rad2deg(theta_eq)
 
     # Calculate flux density
     total_pixels = hp.nside2pixarea(nside)
@@ -118,7 +131,7 @@ def load_gsm2008_sources(frequency=76e6, nside=32, flux_limit=1.0):
     k_B = 1.380649e-23  # Boltzmann constant in J/K
     c = 299792458  # Speed of light in m/s
     flux_density = (
-        ((2 * k_B * downgraded_map * (frequency ** 2)) / (c ** 2)) * solid_angle
+        ((2 * k_B * equatorial * (frequency ** 2)) / (c ** 2)) * solid_angle
     )  # Flux density in W/m^2/Hz
 
     # Convert flux density to Jy (1 Jy = 1e-26 W/m^2/Hz)

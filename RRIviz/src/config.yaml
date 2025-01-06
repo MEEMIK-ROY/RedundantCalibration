@@ -1,10 +1,10 @@
-time_interval: 60
+time_interval: 120
 time_interval_unit: "seconds"
 antenna_positions_file: "../data/antenna.txt"
 output_file: "complex_visibility.h5"
 plot_skymodel_every_hour: true
-use_gleam: true
-gleam_flux_limit: 50
+use_gsm: true
+gsm_flux_limit: 9377814480
 save_simulation_data: true
 total_duration_unit: "days"
 total_duration: 1
